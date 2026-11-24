@@ -110,7 +110,7 @@
       padding: 0 16px;
     }
 
-   /* Barra superior tech */
+    /* Barra superior tech */
     .top-bar {
       background: linear-gradient(90deg, #07192d 0%, #0d3b66 55%, #0761b5 100%);
       color: var(--white);
@@ -377,7 +377,7 @@
     /* Slider Principal + Olas más bajas para ver bien la foto */
     .hero-stage {
       position: relative;
-      margin-top: -28px; /* se integra sutilmente bajo la barra flotante */
+      margin-top: -28px;
     }
 
     .hero-slider {
@@ -616,7 +616,8 @@
         height: 36px;
         font-size: 14px;
       }
-    
+    }
+
     /* Badges de Sección */
     .section-header {
       text-align: center;
@@ -1125,7 +1126,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5N9RTW2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-<!-- Barra Superior Tech -->
+  <!-- Barra Superior Tech -->
   <div class="top-bar">
     <div class="container top-bar__inner">
       <ul class="top-bar__contact">
@@ -1316,7 +1317,7 @@
 
         <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQH_XIf_-6rZswn4LweGUiyNUU99KKmNpvWI0hQwLBjew9ammT2jidKb-fpAv3vMEC39MtVo-bYc5bSpQELv1JnuK1LOCwuXavQiwWsDhyphenhyphen2ZkhGbuZ0oDQNsyop0ci4y0K0ZHdvTOef8xwooU6rXvPapO7Vx_K_a8qtyko134EomloOJjo_xtXNDdJLyc/s1600/CARRRIER1.png" alt="Letrero luminoso Carrier 1" /></div>
         <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC3g7syJxFKDCtqzaWD_1TsdimgicIEjuyDWckNRWCSsO3O_UzOU5jWwuT4RCi0UrIzjgFvFiJXHGaYBQnZ065NBYAnUzpEl61HhIGyn3IzbomcU1yPxMJ-xxqfcEHuOtPr3B2_zT1jllLMTzJnL1_9B4_7VZDpwK5Ek9XxB-oiih0TrSr7oayxzi8Vu8/s1600/CARRIER4.png" alt="Letrero luminoso Carrier 2" /></div>
-        <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrIU8psn2NNMBlwLUAZEqs5owfxFjsOvb2sLpjvp8d_LH-vZBetnvehgG7jSR6e-cANTS1atbDe2s5r7AtOU_WVW7_1IDyc-AJHuLvPMYvoKW4JsLfli2TJvvGGckait7IB1fsIwDFcbWPNIpMx4_oKTLOFZ9-LIc_D6abKOsY_eICHZOQ01rgnscfE0I/s16000/CARRIER3.png" alt="Letrero luminoso Carrier 3" /></div>
+        <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrIU8psn2NNMBlwLUAZEqs5owfxFjsOvb2sLpjvp8d_LH-vZBetnvehgG7jSR6e-cANTS1atbDe2s5r7AtOU_WVW7_1IDyc-AJHuLvPMYvoKW4JsLfli2TJvvGGckait7IB1fsIwDFcbWPNIpMx4_oKTLOFZ9-LIc_D6abKOsY_eICHZOQ01rgnscfE0I/s1600/CARRIER3.png" alt="Letrero luminoso Carrier 3" /></div>
 
         <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOJ1IPCg6awdnXMmeeM3yMCieKh8qJX4XB0atgfHoa596uLWEThCWHXQjLAYqTFUvVy8uP_hlz-t1qL37Mpk9A2tF4HCLq8P1C0pXYXA9b9krPWVislVPJMn8mDx-1WCfwsEnutoA31YH1iro3SC6ssoKR_PzQwB76kZ_fFfW1NO5idBh4RCpUsCsyCTY/s1600/IMG_20231218_213632005.jpg" alt="Instalación de anuncio luminoso nocturno" /></div>
         <div class="project-item"><img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjgkHPzbUrMjzcrgWjc_jF6NxiR24Tkz-_Q0lJPiXFQDRTZ4yER9PUip38Oi627M1GJ7rs_Jkt1qWx67ntcwQJhjURQg1abAnaaJBHOaG7Ij7wPTE6_2mJOhFro4DN0ZHsJaq0qeWkBsHVZHH06RobodxbmFekhnzYOUpHJT-XdUpFECMWIXWdSB68je0/s1600/IMG_20231218_214113460.jpg" alt="Letras 3D iluminadas de noche" /></div>
@@ -1418,7 +1419,7 @@
   </footer>
 
   <script>
-  // Menú tech (cajón en móvil) + Slider con efectos tipo WOWSlider
+    // Menú tech (cajón en móvil) + Slider con efectos tipo WOWSlider + Modal + Formulario
     (function() {
       const navToggle = document.getElementById('navToggle');
       const navToggleIcon = document.getElementById('navToggleIcon');
@@ -1497,7 +1498,6 @@
         slides.forEach((slide, i) => {
           if (i === currentIndex) {
             slide.setAttribute('data-fx', nextFx);
-            // Reinicia animación suavemente
             slide.classList.remove('active');
             void slide.offsetWidth;
             slide.classList.add('active');
@@ -1535,20 +1535,20 @@
       }
 
       startAutoplay();
-    })();
 
       // Modal para galería
       const modal = document.getElementById('imgModal');
       const modalImg = document.getElementById('modalImg');
       document.querySelectorAll('.project-item img').forEach(img => {
         img.addEventListener('click', () => {
+          if (!modal || !modalImg) return;
           modalImg.src = img.src;
           modalImg.alt = img.alt;
           modal.classList.add('open');
         });
       });
 
-      if (modal) {
+      if (modal && modalImg) {
         modal.addEventListener('click', () => {
           modal.classList.remove('open');
           modalImg.src = '';
