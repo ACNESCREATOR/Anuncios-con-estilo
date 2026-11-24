@@ -213,8 +213,6 @@
 
     /* Cabecera totalmente blanca con logo más grande y brillo discreto */
     .site-header {
-      position: relative;
-      z-index: 910;
       background: #ffffff;
       padding: 24px 0 20px;
       border-bottom: none;
@@ -227,9 +225,7 @@
     }
 
     .site-header__logo {
-      position: relative;
-      z-index: 920;
-      max-height: 152px;
+      max-height: 156px;
       width: auto;
       filter:
         drop-shadow(0 0 6px rgba(0, 255, 247, 0.16))
@@ -242,6 +238,11 @@
       filter:
         drop-shadow(0 0 10px rgba(0, 255, 247, 0.24))
         drop-shadow(0 6px 16px rgba(22, 54, 138, 0.18));
+    }
+
+    /* Logo dentro del cajón del menú (visible encima de la cortina en móvil) */
+    .drawer-top {
+      display: none;
     }
 
     /* Barra de Menú: azul cielo en esquina, verde cian en el centro */
@@ -412,7 +413,7 @@
       padding-left: 17px;
     }
 
-    /* Slider Principal + Olas Traslúcidas con Mayor Altura en PC */
+    /* Slider Principal + Olas Traslúcidas con Mayor Altura en PC y Móvil */
     .hero-stage {
       position: relative;
       margin-top: -32px;
@@ -421,7 +422,7 @@
     .hero-slider {
       position: relative;
       width: 100%;
-      height: clamp(660px, 84vh, 880px);
+      height: clamp(760px, 92vh, 1020px);
       overflow: hidden;
       background: #07111c;
       perspective: 1200px;
@@ -1023,7 +1024,7 @@
       }
 
       .hero-slider {
-        height: 460px;
+        height: clamp(540px, 72vh, 740px);
       }
 
       .slider-border {
@@ -1061,22 +1062,19 @@
         gap: 5px;
       }
 
-      /* Cabecera blanca limpia y logo sobresaliendo sobre la barra del menú */
+      /* Cabecera blanca limpia sin empalmarse sobre la barra de Discover */
       .site-header {
         background: #ffffff;
-        padding: 16px 0 0;
-        overflow: visible;
+        padding: 16px 0 14px;
       }
 
       .site-header__logo {
-        max-height: 128px;
-        margin-bottom: -24px;
+        max-height: 112px;
       }
 
       .nav-wrapper {
         top: 0;
         padding: 0;
-        z-index: 900;
       }
 
       .nav-inner {
@@ -1102,19 +1100,19 @@
         position: fixed;
         top: 0;
         right: 0;
-        width: min(310px, 85vw);
+        width: min(320px, 86vw);
         height: 100vh;
         background:
           radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 45%),
           radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.2), transparent 55%),
-          linear-gradient(180deg, rgba(22, 54, 138, 0.97) 0%, rgba(9, 21, 38, 0.98) 100%);
+          linear-gradient(180deg, rgba(22, 54, 138, 0.98) 0%, rgba(9, 21, 38, 0.99) 100%);
         backdrop-filter: blur(14px);
         border-left: 1px solid rgba(0, 255, 247, 0.35);
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
         gap: 6px;
-        padding: 22px 16px 32px;
+        padding: 14px 16px 32px;
         overflow-y: auto;
         z-index: 960;
         transform: translateX(100%);
@@ -1126,6 +1124,51 @@
       .nav-menu.active {
         transform: translateX(0);
         visibility: visible;
+      }
+
+      /* Encabezado interno del cajón: logo encima de la cortina + botón para ocultar */
+      .drawer-top {
+        position: relative;
+        z-index: 980;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 8px 14px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid rgba(0, 255, 247, 0.22);
+      }
+
+      .drawer-close-btn {
+        align-self: flex-end;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        border: 1px solid rgba(0, 255, 247, 0.45);
+        border-radius: 999px;
+        padding: 6px 13px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .drawer-close-btn:hover {
+        background: var(--cyan);
+        color: #061322;
+      }
+
+      .drawer-logo {
+        position: relative;
+        z-index: 990;
+        max-height: 92px;
+        width: auto;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 8px 14px;
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
       }
 
       .nav-menu > li > a,
@@ -1161,9 +1204,9 @@
         transform: rotate(180deg);
       }
 
-      /* Slider un poco más alto en móvil */
+      /* Slider lo más alto posible en móvil */
       .hero-slider {
-        height: 390px;
+        height: clamp(460px, 65vh, 620px);
       }
 
       .slider-btn {
@@ -1193,7 +1236,7 @@
       }
 
       .hero-slider {
-        height: 340px;
+        height: clamp(420px, 60vh, 540px);
       }
     }
   </style>
@@ -1251,6 +1294,18 @@
       </button>
 
       <ul class="nav-menu" id="navMenu">
+        <li class="drawer-top">
+          <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Ocultar menú">
+            <span>Ocultar menú</span>
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img
+            class="drawer-logo"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3g2pw4JVmKnj4yf9msHVK8uqcEc9vPgjJTvFMZYNLeQO0bNkYBRGd_pXoY9vTA_z8s7E8H-xP8Z8nw060ovVAY51bZmhw5RzIhpoYb92AJs73XgcqbM4WJnoPoXXgM49x34Ns5FNhoRU/s1021/logo15.png"
+            alt="Anuncios con Estilo - ACNES Publicidad"
+          />
+        </li>
+
         <li><a href="#top"><i class="fa-solid fa-house"></i> Inicio</a></li>
         <li><a href="#proyectos"><i class="fa-solid fa-compass-drafting"></i> Trabajos Recientes</a></li>
         <li><a href="https://www.anunciosconestilo.com/p/cotizador-virtual-de-cajas-de-luz.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-calculator"></i> Cotizador Virtual</a></li>
@@ -1499,6 +1554,7 @@
     (function() {
       const navToggle = document.getElementById('navToggle');
       const navToggleIcon = document.getElementById('navToggleIcon');
+      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
       const navMenu = document.getElementById('navMenu');
       const navBackdrop = document.getElementById('navBackdrop');
       const dropdown = document.getElementById('estilosDropdown');
@@ -1534,6 +1590,14 @@
           e.stopPropagation();
           const isOpen = !navMenu.classList.contains('active');
           setDrawer(isOpen);
+        });
+      }
+
+      if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setDrawer(false);
         });
       }
 
