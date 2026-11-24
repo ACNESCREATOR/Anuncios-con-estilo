@@ -211,15 +211,11 @@
       border-color: var(--cyan);
     }
 
-    /* Cabecera / Logo con brillo en cyan, azul cielo y azul rey */
+    /* Cabecera totalmente blanca con logo más grande y brillo discreto */
     .site-header {
-      background:
-        radial-gradient(circle at 12% 15%, rgba(56, 189, 248, 0.16), transparent 45%),
-        radial-gradient(circle at 50% 45%, rgba(0, 255, 247, 0.14), transparent 55%),
-        radial-gradient(circle at 88% 20%, rgba(22, 54, 138, 0.12), transparent 50%),
-        linear-gradient(180deg, #f3f9fe 0%, #ffffff 100%);
-      padding: 20px 0 16px;
-      border-bottom: 1px solid #e3eef6;
+      background: #ffffff;
+      padding: 24px 0 20px;
+      border-bottom: none;
     }
 
     .site-header__brand {
@@ -229,21 +225,19 @@
     }
 
     .site-header__logo {
-      max-height: 114px;
+      max-height: 152px;
       width: auto;
       filter:
-        drop-shadow(0 0 10px rgba(0, 255, 247, 0.45))
-        drop-shadow(0 0 20px rgba(56, 189, 248, 0.36))
-        drop-shadow(0 6px 18px rgba(22, 54, 138, 0.28));
+        drop-shadow(0 0 6px rgba(0, 255, 247, 0.16))
+        drop-shadow(0 4px 12px rgba(22, 54, 138, 0.12));
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .site-header__logo:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       filter:
-        drop-shadow(0 0 14px rgba(0, 255, 247, 0.65))
-        drop-shadow(0 0 26px rgba(56, 189, 248, 0.5))
-        drop-shadow(0 8px 22px rgba(22, 54, 138, 0.36));
+        drop-shadow(0 0 10px rgba(0, 255, 247, 0.24))
+        drop-shadow(0 6px 16px rgba(22, 54, 138, 0.18));
     }
 
     /* Barra de Menú: azul cielo en esquina, verde cian en el centro */
@@ -350,16 +344,17 @@
       color: #061322;
     }
 
+    /* Puente invisible en top para que el mouse nunca pierda foco al bajar al submenú */
     .dropdown-panel {
       display: none;
       position: absolute;
-      top: calc(100% + 8px);
+      top: 100%;
       left: 0;
-      min-width: 265px;
+      min-width: 270px;
       background:
         radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.22), transparent 60%),
-        linear-gradient(160deg, rgba(22, 54, 138, 0.94), rgba(11, 27, 45, 0.97));
+        linear-gradient(160deg, rgba(22, 54, 138, 0.96), rgba(11, 27, 45, 0.98));
       backdrop-filter: blur(14px);
       border: 1px solid rgba(0, 255, 247, 0.35);
       list-style: none;
@@ -367,11 +362,35 @@
       box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
       z-index: 950;
       padding: 8px;
+      margin-top: 6px;
     }
 
-    .has-dropdown:hover .dropdown-panel,
+    /* Puente transparente que cubre el espacio de 6px entre botón y panel */
+    .dropdown-panel::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: transparent;
+    }
+
     .has-dropdown.open .dropdown-panel {
       display: block;
+    }
+
+    @media (min-width: 769px) {
+      .has-dropdown:hover .dropdown-panel {
+        display: block;
+      }
+      .has-dropdown.open .caret {
+        transform: rotate(180deg);
+      }
+    }
+
+    .caret {
+      transition: transform 0.25s ease;
     }
 
     .dropdown-panel li a {
@@ -1040,11 +1059,11 @@
       }
 
       .site-header {
-        padding: 14px 0 12px;
+        padding: 16px 0 14px;
       }
 
       .site-header__logo {
-        max-height: 84px;
+        max-height: 108px;
       }
 
       .nav-wrapper {
@@ -1132,10 +1151,6 @@
 
       .nav-menu .has-dropdown.open .caret {
         transform: rotate(180deg);
-      }
-
-      .caret {
-        transition: transform 0.25s ease;
       }
 
       /* Slider más alto en móvil */
@@ -1481,6 +1496,7 @@
       const dropdown = document.getElementById('estilosDropdown');
       const dropdownToggle = document.getElementById('estilosToggle');
       const dropdownPanel = document.getElementById('estilosPanel');
+      let closeTimeout;
 
       function setDrawer(open) {
         if (!navMenu || !navToggle) return;
@@ -1494,9 +1510,14 @@
 
       function setDropdown(open) {
         if (!dropdown || !dropdownToggle || !dropdownPanel) return;
+        clearTimeout(closeTimeout);
         dropdown.classList.toggle('open', open);
         dropdownToggle.setAttribute('aria-expanded', String(open));
-        dropdownPanel.style.display = open ? 'block' : 'none';
+        if (window.innerWidth <= 768) {
+          dropdownPanel.style.display = open ? 'block' : 'none';
+        } else {
+          dropdownPanel.style.display = open ? 'block' : '';
+        }
       }
 
       if (navToggle) {
@@ -1528,15 +1549,31 @@
           setDropdown(!currentlyOpen);
         });
 
+        dropdown.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 768) {
+            clearTimeout(closeTimeout);
+            setDropdown(true);
+          }
+        });
+
         dropdown.addEventListener('mouseleave', () => {
           if (window.innerWidth > 768) {
+            closeTimeout = setTimeout(() => {
+              setDropdown(false);
+            }, 180);
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!dropdown.contains(e.target)) {
             setDropdown(false);
           }
         });
 
         window.addEventListener('resize', () => {
+          clearTimeout(closeTimeout);
           if (window.innerWidth > 768) {
-            dropdownPanel.style.display = '';
+            dropdownPanel.style.display = dropdown.classList.contains('open') ? 'block' : '';
           } else {
             dropdownPanel.style.display = dropdown.classList.contains('open') ? 'block' : 'none';
           }
