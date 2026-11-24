@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://blogger.googleusercontent.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Datos Estructurados Schema.org (SEO Local / Organización) -->
@@ -116,7 +116,7 @@
       padding: 0 16px;
     }
 
-    /* Barra superior: azul cielo en esquina, verde cian al centro, azul rey de base */
+    /* Barra superior: azul cielo en esquina, verde cian al centro, sin línea cian inferior */
     .top-bar {
       position: relative;
       background:
@@ -127,7 +127,7 @@
       -webkit-backdrop-filter: blur(12px);
       color: var(--white);
       font-size: 13.5px;
-      border-bottom: 1px solid rgba(0, 255, 247, 0.3);
+      border-bottom: none;
     }
 
     .top-bar__inner {
@@ -275,13 +275,11 @@
 
     .nav-brand-mini {
       display: none;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
+      font-family: 'Cinzel', Georgia, serif;
       font-weight: 600;
-      font-size: 17px;
+      font-size: 13px;
       color: #ffffff;
-      letter-spacing: 0.35px;
-      text-shadow: 0 0 10px rgba(0, 255, 247, 0.35);
+      letter-spacing: 1px;
     }
 
     .nav-toggle {
@@ -1118,7 +1116,7 @@
         border-radius: 12px;
       }
 
-      .dropdown-panel {
+      .nav-menu .dropdown-panel {
         display: none;
         position: static;
         box-shadow: none;
@@ -1128,11 +1126,11 @@
         padding: 6px;
       }
 
-      .has-dropdown.open .dropdown-panel {
+      .nav-menu .has-dropdown.open .dropdown-panel {
         display: block;
       }
 
-      .has-dropdown.open .caret {
+      .nav-menu .has-dropdown.open .caret {
         transform: rotate(180deg);
       }
 
@@ -1240,9 +1238,9 @@
         <li class="has-dropdown" id="estilosDropdown">
           <button type="button" class="dropdown-trigger" id="estilosToggle" aria-expanded="false">
             <span><i class="fa-solid fa-layer-group"></i> Estilos de Anuncios</span>
-            <i class="fa-solid fa-chevron-down caret"></i>
+            <i class="fa-solid fa-chevron-down caret" id="estilosCaret"></i>
           </button>
-          <ul class="dropdown-panel">
+          <ul class="dropdown-panel" id="estilosPanel">
             <li><a href="https://www.anunciosconestilo.mx/p/letras-3d-tipo-pueblo-magico.html" target="_blank" rel="noopener noreferrer">Letras 3D Monumentales</a></li>
             <li><a href="https://www.anunciosconestilo.mx/2024/05/letras-3d-tipo-retro.html" target="_blank" rel="noopener noreferrer">Letras 3D estilo Retro</a></li>
             <li><a href="https://www.anunciosconestilo.mx/2024/05/letras-3d-en-aluminio-con-acrilico.html" target="_blank" rel="noopener noreferrer">Letras 3D con Aluminio y Acrílico</a></li>
@@ -1482,6 +1480,7 @@
       const navBackdrop = document.getElementById('navBackdrop');
       const dropdown = document.getElementById('estilosDropdown');
       const dropdownToggle = document.getElementById('estilosToggle');
+      const dropdownPanel = document.getElementById('estilosPanel');
 
       function setDrawer(open) {
         if (!navMenu || !navToggle) return;
@@ -1493,8 +1492,16 @@
         }
       }
 
+      function setDropdown(open) {
+        if (!dropdown || !dropdownToggle || !dropdownPanel) return;
+        dropdown.classList.toggle('open', open);
+        dropdownToggle.setAttribute('aria-expanded', String(open));
+        dropdownPanel.style.display = open ? 'block' : 'none';
+      }
+
       if (navToggle) {
         navToggle.addEventListener('click', (e) => {
+          e.preventDefault();
           e.stopPropagation();
           const isOpen = !navMenu.classList.contains('active');
           setDrawer(isOpen);
@@ -1513,12 +1520,26 @@
         });
       }
 
-      if (dropdown && dropdownToggle) {
+      if (dropdown && dropdownToggle && dropdownPanel) {
         dropdownToggle.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          const isOpen = dropdown.classList.toggle('open');
-          dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+          const currentlyOpen = dropdown.classList.contains('open');
+          setDropdown(!currentlyOpen);
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+          if (window.innerWidth > 768) {
+            setDropdown(false);
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 768) {
+            dropdownPanel.style.display = '';
+          } else {
+            dropdownPanel.style.display = dropdown.classList.contains('open') ? 'block' : 'none';
+          }
         });
       }
 
