@@ -213,6 +213,8 @@
 
     /* Cabecera totalmente blanca con logo más grande y brillo discreto */
     .site-header {
+      position: relative;
+      z-index: 910;
       background: #ffffff;
       padding: 24px 0 20px;
       border-bottom: none;
@@ -225,6 +227,8 @@
     }
 
     .site-header__logo {
+      position: relative;
+      z-index: 920;
       max-height: 152px;
       width: auto;
       filter:
@@ -365,7 +369,6 @@
       margin-top: 6px;
     }
 
-    /* Puente transparente que cubre el espacio de 6px entre botón y panel */
     .dropdown-panel::before {
       content: "";
       position: absolute;
@@ -418,7 +421,7 @@
     .hero-slider {
       position: relative;
       width: 100%;
-      height: clamp(560px, 74vh, 760px);
+      height: clamp(660px, 84vh, 880px);
       overflow: hidden;
       background: #07111c;
       perspective: 1200px;
@@ -1020,7 +1023,7 @@
       }
 
       .hero-slider {
-        height: 400px;
+        height: 460px;
       }
 
       .slider-border {
@@ -1058,17 +1061,22 @@
         gap: 5px;
       }
 
+      /* Cabecera blanca limpia y logo sobresaliendo sobre la barra del menú */
       .site-header {
-        padding: 16px 0 14px;
+        background: #ffffff;
+        padding: 16px 0 0;
+        overflow: visible;
       }
 
       .site-header__logo {
-        max-height: 108px;
+        max-height: 128px;
+        margin-bottom: -24px;
       }
 
       .nav-wrapper {
         top: 0;
         padding: 0;
+        z-index: 900;
       }
 
       .nav-inner {
@@ -1153,9 +1161,9 @@
         transform: rotate(180deg);
       }
 
-      /* Slider más alto en móvil */
+      /* Slider un poco más alto en móvil */
       .hero-slider {
-        height: 340px;
+        height: 390px;
       }
 
       .slider-btn {
@@ -1185,7 +1193,7 @@
       }
 
       .hero-slider {
-        height: 300px;
+        height: 340px;
       }
     }
   </style>
