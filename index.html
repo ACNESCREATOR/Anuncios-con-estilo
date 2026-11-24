@@ -62,11 +62,10 @@
       --primary: #175c83;
       --primary-dark: #0e3d58;
       --accent: #0761b5;
+      --royal-blue: #16368a;
+      --sky-blue: #38bdf8;
       --cyan: #00fff7;
       --cyan-bright: #00ffff;
-      --wave-cyan-soft: rgba(0, 255, 247, 0.24);
-      --wave-blue-soft: rgba(69, 121, 226, 0.34);
-      --wave-deep-soft: rgba(23, 92, 131, 0.48);
       --text-main: #444444;
       --text-muted: #666666;
       --bg-light: #f6f6f6;
@@ -117,18 +116,18 @@
       padding: 0 16px;
     }
 
-    /* Barra superior con colores traslúcidos de las olas */
+    /* Barra superior: azul cielo en esquina, verde cian al centro, azul rey de base */
     .top-bar {
       position: relative;
       background:
-        radial-gradient(circle at 15% 50%, var(--wave-cyan-soft), transparent 55%),
-        radial-gradient(circle at 85% 50%, var(--wave-blue-soft), transparent 60%),
-        linear-gradient(90deg, rgba(10, 28, 48, 0.94) 0%, rgba(23, 92, 131, 0.88) 55%, rgba(69, 121, 226, 0.86) 100%);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.45), transparent 44%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.34), transparent 52%),
+        linear-gradient(90deg, rgba(22, 54, 138, 0.92) 0%, rgba(23, 92, 131, 0.88) 50%, rgba(22, 54, 138, 0.92) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: var(--white);
       font-size: 13.5px;
-      border-bottom: 1px solid rgba(0, 255, 247, 0.35);
+      border-bottom: 1px solid rgba(0, 255, 247, 0.3);
     }
 
     .top-bar__inner {
@@ -137,8 +136,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      min-height: 46px;
-      padding: 8px 0;
+      min-height: 44px;
+      padding: 6px 0;
     }
 
     .top-bar__contact,
@@ -150,43 +149,36 @@
       list-style: none;
     }
 
-    /* Botón de contacto moderno tipo píldora neon/tech */
+    /* Píldora limpia sin brillo */
     .top-bar__cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      gap: 7px;
+      padding: 5px 13px;
       border-radius: 999px;
-      background: rgba(0, 255, 247, 0.16);
+      background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      border: 1px solid rgba(0, 255, 247, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.55);
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 12px;
-      letter-spacing: 0.4px;
-      box-shadow: 0 0 12px rgba(0, 255, 247, 0.18);
+      letter-spacing: 0.3px;
+      box-shadow: none;
     }
 
     .top-bar__cta:hover {
-      background: var(--cyan);
-      color: #061322;
+      background: rgba(0, 255, 247, 0.22);
+      color: #ffffff;
       border-color: var(--cyan);
-      box-shadow: 0 0 18px rgba(0, 255, 247, 0.55);
-      transform: translateY(-1px);
+      box-shadow: none;
     }
 
     .pulse-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
-      animation: pulseGlow 1.8s infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.65; }
+      box-shadow: none;
     }
 
     .top-bar__contact a:not(.top-bar__cta) {
@@ -201,15 +193,15 @@
     }
 
     .top-bar__social a {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: var(--white);
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(0, 255, 247, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       font-size: 13px;
     }
 
@@ -217,15 +209,16 @@
       color: #061322;
       background: var(--cyan);
       border-color: var(--cyan);
-      transform: translateY(-2px);
     }
 
-    /* Cabecera / Logo */
+    /* Cabecera / Logo con brillo en cyan, azul cielo y azul rey */
     .site-header {
       background:
-        radial-gradient(circle at 50% 0%, rgba(0, 255, 247, 0.12), transparent 65%),
-        linear-gradient(180deg, #f3f9fd 0%, #ffffff 100%);
-      padding: 18px 0 14px;
+        radial-gradient(circle at 12% 15%, rgba(56, 189, 248, 0.16), transparent 45%),
+        radial-gradient(circle at 50% 45%, rgba(0, 255, 247, 0.14), transparent 55%),
+        radial-gradient(circle at 88% 20%, rgba(22, 54, 138, 0.12), transparent 50%),
+        linear-gradient(180deg, #f3f9fe 0%, #ffffff 100%);
+      padding: 20px 0 16px;
       border-bottom: 1px solid #e3eef6;
     }
 
@@ -236,17 +229,24 @@
     }
 
     .site-header__logo {
-      max-height: 112px;
+      max-height: 114px;
       width: auto;
+      filter:
+        drop-shadow(0 0 10px rgba(0, 255, 247, 0.45))
+        drop-shadow(0 0 20px rgba(56, 189, 248, 0.36))
+        drop-shadow(0 6px 18px rgba(22, 54, 138, 0.28));
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .site-header__logo:hover {
-      transform: scale(1.02);
-      filter: drop-shadow(0 6px 14px rgba(23, 92, 131, 0.16));
+      transform: scale(1.03);
+      filter:
+        drop-shadow(0 0 14px rgba(0, 255, 247, 0.65))
+        drop-shadow(0 0 26px rgba(56, 189, 248, 0.5))
+        drop-shadow(0 8px 22px rgba(22, 54, 138, 0.36));
     }
 
-    /* Barra de Menú con efecto traslúcido de las olas */
+    /* Barra de Menú: azul cielo en esquina, verde cian en el centro */
     .nav-wrapper {
       position: sticky;
       top: 10px;
@@ -259,13 +259,14 @@
       pointer-events: auto;
       max-width: 1180px;
       background:
-        linear-gradient(120deg, rgba(23, 92, 131, 0.78) 0%, rgba(69, 121, 226, 0.72) 55%, rgba(0, 255, 247, 0.28) 100%),
-        rgba(10, 25, 44, 0.78);
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.42), transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.3), transparent 55%),
+        linear-gradient(110deg, rgba(22, 54, 138, 0.84) 0%, rgba(23, 92, 131, 0.8) 50%, rgba(22, 54, 138, 0.86) 100%);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(0, 255, 247, 0.42);
+      border: 1px solid rgba(0, 255, 247, 0.38);
       border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(7, 35, 65, 0.25);
+      box-shadow: 0 12px 30px rgba(7, 35, 65, 0.22);
       padding: 6px 14px;
       display: flex;
       align-items: center;
@@ -277,25 +278,25 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-style: italic;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 17px;
       color: #ffffff;
-      letter-spacing: 0.4px;
-      text-shadow: 0 0 12px rgba(0, 255, 247, 0.35);
+      letter-spacing: 0.35px;
+      text-shadow: 0 0 10px rgba(0, 255, 247, 0.35);
     }
 
     .nav-toggle {
       display: none;
-      background: rgba(0, 255, 247, 0.14);
+      background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      border: 1px solid rgba(0, 255, 247, 0.55);
-      border-radius: 10px;
-      padding: 8px 13px;
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      border-radius: 9px;
+      padding: 6px 11px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
     .nav-menu {
@@ -338,13 +339,12 @@
     }
 
     .nav-menu > li > a.nav-cta-pill {
-      background: linear-gradient(90deg, rgba(7, 97, 181, 0.9), rgba(0, 255, 247, 0.45));
+      background: linear-gradient(90deg, rgba(22, 54, 138, 0.9), rgba(56, 189, 248, 0.45));
       color: #ffffff;
       font-weight: 700;
-      border: 1px solid rgba(0, 255, 247, 0.65);
+      border: 1px solid rgba(0, 255, 247, 0.55);
       border-radius: 999px;
       padding: 8px 16px;
-      box-shadow: 0 4px 14px rgba(0, 255, 247, 0.22);
     }
 
     .nav-menu > li > a.nav-cta-pill:hover {
@@ -359,7 +359,9 @@
       left: 0;
       min-width: 265px;
       background:
-        linear-gradient(160deg, rgba(23, 92, 131, 0.9), rgba(11, 27, 45, 0.96));
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.22), transparent 60%),
+        linear-gradient(160deg, rgba(22, 54, 138, 0.94), rgba(11, 27, 45, 0.97));
       backdrop-filter: blur(14px);
       border: 1px solid rgba(0, 255, 247, 0.35);
       list-style: none;
@@ -863,13 +865,13 @@
       box-shadow: 0 0 15px #00fff7;
     }
 
-    /* Contacto y Redes con tonos traslúcidos de las olas */
+    /* Contacto y Redes: azul cielo en esquina, verde cian al centro */
     .contact-social-section {
       position: relative;
       background:
-        radial-gradient(circle at 12% 20%, rgba(0, 255, 247, 0.22), transparent 50%),
-        radial-gradient(circle at 88% 80%, rgba(69, 121, 226, 0.35), transparent 55%),
-        linear-gradient(135deg, rgba(13, 44, 72, 0.96) 0%, rgba(23, 92, 131, 0.92) 55%, rgba(69, 121, 226, 0.85) 100%);
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.36), transparent 46%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.24), transparent 56%),
+        linear-gradient(135deg, rgba(22, 54, 138, 0.95) 0%, rgba(23, 92, 131, 0.9) 55%, rgba(22, 54, 138, 0.94) 100%);
       color: var(--white);
       padding: 56px 0;
       border-top: 1px solid rgba(0, 255, 247, 0.3);
@@ -924,7 +926,7 @@
       border-radius: var(--radius);
       padding: 28px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 255, 247, 0.35);
+      border: 1px solid rgba(56, 189, 248, 0.45);
     }
 
     .contact-card h3 {
@@ -974,11 +976,12 @@
       background: var(--primary-dark);
     }
 
-    /* Footer con efecto traslúcido de las olas */
+    /* Footer con azul cielo en esquina y cian al centro */
     .site-footer {
       background:
-        linear-gradient(70deg, rgba(7, 97, 181, 0.9) 10%, rgba(69, 121, 226, 0.85) 55%, rgba(0, 255, 247, 0.55) 100%),
-        #0c3354;
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.34), transparent 55%),
+        linear-gradient(90deg, rgba(22, 54, 138, 0.94) 0%, rgba(23, 92, 131, 0.9) 50%, rgba(22, 54, 138, 0.94) 100%);
       backdrop-filter: blur(10px);
       color: var(--white);
       padding: 22px 0;
@@ -1014,21 +1017,28 @@
     }
 
     @media (max-width: 768px) {
-      /* En móvil: solo botón de contacto y teléfono, sin correo ni redes sociales arriba */
+      /* Barra superior delgada y limpia en móvil */
       .top-bar__email,
       .top-bar__social {
         display: none;
       }
 
       .top-bar__inner {
+        min-height: 34px;
+        padding: 4px 0;
         justify-content: center;
-        padding: 8px 0;
       }
 
       .top-bar__contact {
         justify-content: center;
         gap: 10px;
-        font-size: 12.5px;
+        font-size: 11.5px;
+      }
+
+      .top-bar__cta {
+        padding: 3px 10px;
+        font-size: 11px;
+        gap: 5px;
       }
 
       .site-header {
@@ -1036,7 +1046,7 @@
       }
 
       .site-header__logo {
-        max-height: 82px;
+        max-height: 84px;
       }
 
       .nav-wrapper {
@@ -1049,7 +1059,7 @@
         border-left: 0;
         border-right: 0;
         justify-content: space-between;
-        padding: 10px 14px;
+        padding: 8px 14px;
       }
 
       .nav-brand-mini {
@@ -1070,7 +1080,9 @@
         width: min(310px, 85vw);
         height: 100vh;
         background:
-          linear-gradient(180deg, rgba(13, 44, 72, 0.97) 0%, rgba(8, 22, 38, 0.98) 100%);
+          radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 45%),
+          radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.2), transparent 55%),
+          linear-gradient(180deg, rgba(22, 54, 138, 0.97) 0%, rgba(9, 21, 38, 0.98) 100%);
         backdrop-filter: blur(14px);
         border-left: 1px solid rgba(0, 255, 247, 0.35);
         flex-direction: column;
@@ -1171,7 +1183,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5N9RTW2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Barra Superior con colores traslúcidos de las olas -->
+  <!-- Barra Superior -->
   <div class="top-bar">
     <div class="container top-bar__inner">
       <ul class="top-bar__contact">
