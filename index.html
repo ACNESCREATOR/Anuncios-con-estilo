@@ -413,7 +413,7 @@
       padding-left: 17px;
     }
 
-    /* Slider Principal + Olas Traslúcidas con Mayor Altura en PC y Móvil */
+    /* Slider Principal + Transición de Cuadritos (Mosaico) + Olas Traslúcidas */
     .hero-stage {
       position: relative;
       margin-top: -32px;
@@ -425,7 +425,6 @@
       height: clamp(760px, 92vh, 1020px);
       overflow: hidden;
       background: #07111c;
-      perspective: 1200px;
     }
 
     .hero-slide {
@@ -434,40 +433,50 @@
       opacity: 0;
       z-index: 0;
       pointer-events: none;
-      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.45s ease;
     }
-
-    .hero-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 6s ease;
-    }
-
-    /* Variantes de transición estilo WOWSlider */
-    .hero-slide[data-fx="kenburns"] { transform: scale(1.04); }
-    .hero-slide[data-fx="kenburns"].active { transform: scale(1); }
-    .hero-slide[data-fx="kenburns"].active img { transform: scale(1.07); }
-
-    .hero-slide[data-fx="slide-left"] { transform: translateX(7%); }
-    .hero-slide[data-fx="slide-left"].active { transform: translateX(0); }
-
-    .hero-slide[data-fx="slide-right"] { transform: translateX(-7%); }
-    .hero-slide[data-fx="slide-right"].active { transform: translateX(0); }
-
-    .hero-slide[data-fx="zoom-in"] { transform: scale(0.9); }
-    .hero-slide[data-fx="zoom-in"].active { transform: scale(1); }
-
-    .hero-slide[data-fx="zoom-out"] { transform: scale(1.14); }
-    .hero-slide[data-fx="zoom-out"].active { transform: scale(1); }
-
-    .hero-slide[data-fx="flip-x"] { transform: rotateX(14deg) scale(0.96); transform-origin: center bottom; }
-    .hero-slide[data-fx="flip-x"].active { transform: rotateX(0deg) scale(1); }
 
     .hero-slide.active {
       opacity: 1;
       z-index: 2;
       pointer-events: auto;
+    }
+
+    .hero-slide.exiting {
+      opacity: 1;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Cuadritos que forman y deshacen la imagen en mosaico */
+    .tile-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tile-cell {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(0.72);
+      transition:
+        opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .hero-slide.active .tile-cell.is-in {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-slide.exiting .tile-cell.is-out {
+      opacity: 0;
+      transform: scale(0.68);
     }
 
     .slider-btn {
@@ -506,16 +515,19 @@
       transform: translateX(-50%);
       z-index: 5;
       display: flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 90vw;
+      gap: 6px;
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(6, 15, 26, 0.5);
+      background: rgba(6, 15, 26, 0.55);
       backdrop-filter: blur(6px);
     }
 
     .slider-dot {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
       border: 0;
       background: rgba(255, 255, 255, 0.45);
@@ -524,7 +536,7 @@
     }
 
     .slider-dot.active {
-      width: 24px;
+      width: 20px;
       background: var(--cyan);
     }
 
@@ -1038,7 +1050,6 @@
     }
 
     @media (max-width: 768px) {
-      /* Barra superior delgada y limpia en móvil */
       .top-bar__email,
       .top-bar__social {
         display: none;
@@ -1062,7 +1073,6 @@
         gap: 5px;
       }
 
-      /* Cabecera blanca limpia sin empalmarse sobre la barra de Discover */
       .site-header {
         background: #ffffff;
         padding: 16px 0 14px;
@@ -1095,7 +1105,6 @@
         flex-shrink: 0;
       }
 
-      /* Cajón oculto fuera de pantalla sin generar scroll horizontal */
       .nav-menu {
         position: fixed;
         top: 0;
@@ -1126,7 +1135,6 @@
         visibility: visible;
       }
 
-      /* Encabezado interno del cajón: logo encima de la cortina + botón para ocultar */
       .drawer-top {
         position: relative;
         z-index: 980;
@@ -1204,7 +1212,6 @@
         transform: rotate(180deg);
       }
 
-      /* Slider lo más alto posible en móvil */
       .hero-slider {
         height: clamp(460px, 65vh, 620px);
       }
@@ -1336,37 +1343,9 @@
   </nav>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <!-- Slider Principal con Efectos Tipo WOWSlider + Olas Traslúcidas -->
+  <!-- Slider Principal Dinámico (Móvil vs PC) + Transición en Cuadritos + Olas Traslúcidas -->
   <div class="hero-stage" id="top">
-    <section class="hero-slider" aria-label="Galería destacada de anuncios luminosos">
-      <div class="hero-slide active" data-fx="kenburns">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSMdkusSMg2jwBHyF_GxdvwNYcNyohXAOSsLGi75yLaNYiStTEfwM-z6TA7chKmu9XhiUiDTSvb78P6UJxkEYJldZsSaXUE776q0-wpLIcpWCbKpy9Ev5aoqmQnYtsMnzw8kNWwXrdmOWSB2emIksjb1sU8YnFOoFDpdzjmHoqeEQP1Y3DiU30PJXFNF4/s1600/gracias.png" alt="Anuncio luminoso personalizado" />
-      </div>
-      <div class="hero-slide" data-fx="slide-left">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4FsLEbtzo1bZfcctjfXQvQ0FYLKyUQLuKLgQsiHHT83LXdjGtKWG3toWjGetipQ-IjFbqjhEWWJGjmO5NvZ04ZFKPkTV07r34t91zlNGjC0ywtkzy2AjWyBoEI_nYsZv44I6kqfmbxfz0_s-PHhDvpBkSoyO7ujmgEsIfAI90-bIPQXFfWIdRGbaexd8/s1600/manekineko.png" alt="Diseño de anuncio luminoso temático" />
-      </div>
-      <div class="hero-slide" data-fx="zoom-in">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6z3UU_M1IroXkpdzw5MUgdFvjRZVM6ICQAxrlgHg1y4kLZOLpdMhIMqrjUUGM32hDiwiJxqaiN7Er80zS1ptm_We3tYwojJS_MCJ7XSxBBX4Qf1sKAl318wBU6Y5xBJDjxXf8Xp7UgkGHp7rRN14CB9C9fwA0U9zBVkBK2D9NyDVHe11vsFuAmCql_js/s1600/PUB123.png" alt="Anuncio publicitario iluminado" />
-      </div>
-      <div class="hero-slide" data-fx="flip-x">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcJBvO7Udd4s6CeKAmRf1cMcTvcLOjUJfGwkVul68KL06n2iMW7Go8DyO4LgS9Vw3Oik18POU3R2fdWLgvfhrt5iiq9PfSOJTNvZoTLRBNQcTOBM4TgN7MHkAhX1nkt0tpBZZrhtrbXXWUUpWhpP0e_69-SLs67NC8unfZAH-vzNEp8D7vBdNwbndR7WA/s1600/y.png" alt="Letrero luminoso en fachada" />
-      </div>
-      <div class="hero-slide" data-fx="slide-right">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo2Y5MC7V9C_A_jNl670KUt1x_m6HDcOGuf7PbK-AAXMebr6G2eERvJNPXDHKDweeESG51GAawxe0-fAq5Blo1qI1uPAwn68yFs28_bX_OWimuWqeLAnqXJntoD7tdOdVdLWpOTGxBD8rHbSE-SxPmD3h7PUdUlI5KnFI8sF6Rshl9BPEzSVJFKWXQYLg/s1600/plaza2.png" alt="Anuncio luminoso para plaza comercial" />
-      </div>
-      <div class="hero-slide" data-fx="kenburns">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEETjCJ8A1skcYBixxT9w6rPheCpbX0wUfU6BVHxMTDYrGC3ZKCkN8SNsmnzUIWXsXA_JpRs0LNI4Nyfy4PyXCs4TtXPJuyUSG1j0oq_sKWGo1rvgfjSqtfBygYRsUAdeaIBt3etRK-UQUVGPAl-rEsyOsR65AFuSWzyMBCYNQZoAGMLULGMbDX9r9efI/s1600/hospivet1.png" alt="Señalización luminosa veterinaria" />
-      </div>
-      <div class="hero-slide" data-fx="zoom-out">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3DFtTiEf6lVT_0arEOlgD-kGSB50VWGtdge43qonhbhAVu0PfQR3NX8SNv3IXUmdMcyTBbK-1M5bOv0O6zvleISTSX7hZMJOFKzVIeOv32dLRrZ5KL292BR-J6CZ6S-r2VbSh5IYX0gggkDuRx2bbTfMJhVxgZcNCRBkr_NztucLKwqeCxLhVl_k0gxU/s1600/hospivet2.png" alt="Letras corpóreas iluminadas" />
-      </div>
-      <div class="hero-slide" data-fx="slide-left">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfHR9zFBntVn9TB1VNfm8e-xLt0q4fTydzs9Vu8hgEXgfOAV_aExUqZpGl6JGYK5AVkI3XOzhsd1_opppe0hhlNWRHilis2udJtDUH-CSCpNhNqX3NtS7KiUjjFQmkjoxzPHJXItnZiJW1ZL7-K_kkmOzyuAgGCpNzCcaMF2vlO-Lu-28UK1l4TPrxAFU/s1600/bodega1.png" alt="Anuncio exterior de alto impacto" />
-      </div>
-      <div class="hero-slide" data-fx="flip-x">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjO0-KZjfElZkgUVdXPq_WpOhW9Xn3nlSqzMlMUnOpuRZkdBtleQGYTS7hYvMIazXom2L3xrL3b6b3fBwBuXxmz0b2-GIWyj05PG98ziUj-AA9qHO0MPsPeM57frb4_ba3GNOtMXoHgi47ECwInVY4HjSfzxWgFluNzSmL0HcoqAoJeaEXLjb58kl3n/s1600/HermesMusicClub.png" alt="Anuncio luminoso para negocio nocturno" />
-      </div>
-
+    <section class="hero-slider" id="heroSlider" aria-label="Galería destacada de anuncios luminosos">
       <button type="button" class="slider-btn prev" id="prevSlide" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button>
       <button type="button" class="slider-btn next" id="nextSlide" aria-label="Siguiente imagen"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="slider-dots" id="sliderDots" aria-label="Seleccionar diapositiva"></div>
@@ -1550,8 +1529,8 @@
   </footer>
 
   <script>
-    // Menú traslúcido (cajón en móvil) + Slider con efectos tipo WOWSlider + Modal + Formulario
     (function() {
+      // 1. Menú traslúcido (cajón en móvil con botón ocultar y logo encima)
       const navToggle = document.getElementById('navToggle');
       const navToggleIcon = document.getElementById('navToggleIcon');
       const drawerCloseBtn = document.getElementById('drawerCloseBtn');
@@ -1588,8 +1567,7 @@
         navToggle.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          const isOpen = !navMenu.classList.contains('active');
-          setDrawer(isOpen);
+          setDrawer(!navMenu.classList.contains('active'));
         });
       }
 
@@ -1617,8 +1595,7 @@
         dropdownToggle.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          const currentlyOpen = dropdown.classList.contains('open');
-          setDropdown(!currentlyOpen);
+          setDropdown(!dropdown.classList.contains('open'));
         });
 
         dropdown.addEventListener('mouseenter', () => {
@@ -1630,16 +1607,12 @@
 
         dropdown.addEventListener('mouseleave', () => {
           if (window.innerWidth > 768) {
-            closeTimeout = setTimeout(() => {
-              setDropdown(false);
-            }, 180);
+            closeTimeout = setTimeout(() => setDropdown(false), 180);
           }
         });
 
         document.addEventListener('click', (e) => {
-          if (!dropdown.contains(e.target)) {
-            setDropdown(false);
-          }
+          if (!dropdown.contains(e.target)) setDropdown(false);
         });
 
         window.addEventListener('resize', () => {
@@ -1652,55 +1625,250 @@
         });
       }
 
-      // Slider con efectos variados estilo WOWSlider
-      const slides = document.querySelectorAll('.hero-slide');
+      // 2. Slider dinámico (Móvil vs PC) + Transición de cuadritos (mosaico)
+      const mobileSlidesData = [
+        { alt: 'Neón 1', src: './imagesap/neon/neon1.avif' },
+        { alt: 'Caja de Luz 1', src: './imagesap/cajas/cajas1.avif' },
+        { alt: 'Letras 3D 1', src: './imagesap/letras/letras1.avif' },
+        { alt: 'Neón 2', src: './imagesap/neon/neon2.avif' },
+        { alt: 'Caja de Luz 2', src: './imagesap/cajas/cajas2.avif' },
+        { alt: 'Letras 3D 2', src: './imagesap/letras/letras2.avif' },
+        { alt: 'Neón 3', src: './imagesap/neon/neon3.avif' },
+        { alt: 'Caja de Luz 3', src: './imagesap/cajas/OFERTON3.avif' },
+        { alt: 'Letras 3D 3', src: './imagesap/letras/letras3.avif' },
+        { alt: 'Neón 4', src: './imagesap/neon/neon4.avif' },
+        { alt: 'Caja de Luz 4', src: './imagesap/cajas/cajas4.avif' },
+        { alt: 'Letras 3D 4', src: './imagesap/letras/letras4.avif' },
+        { alt: 'Neón 5', src: './imagesap/neon/TRI5.avif' },
+        { alt: 'Caja de Luz 5', src: './imagesap/cajas/ROBERTO5.avif' },
+        { alt: 'Letras 3D 5', src: './imagesap/letras/BOLILLO5.avif' },
+        { alt: 'Neón 6', src: './imagesap/neon/SOPA6.avif' },
+        { alt: 'Caja de Luz 6', src: './imagesap/cajas/ROSA6.avif' },
+        { alt: 'Letras 3D 6', src: './imagesap/letras/SAMSUNG6.avif' },
+        { alt: 'Neón 7', src: './imagesap/neon/GRACIAS7.avif' },
+        { alt: 'Caja de Luz 7', src: './imagesap/cajas/URGENCIAS7.avif' },
+        { alt: 'Letras 3D 7', src: './imagesap/letras/UDON7.avif' },
+        { alt: 'Neón 8', src: './imagesap/neon/DESA8.avif' },
+        { alt: 'Caja de Luz 8', src: './imagesap/cajas/CACHORR8.avif' },
+        { alt: 'Letras 3D 8', src: './imagesap/letras/GSQUARE8.avif' }
+      ];
+
+      const desktopSlidesData = [
+        { alt: 'Proyecto 1', src: './image%20acnes%20avif/proyectos/TERRA1%20(1).avif' },
+        { alt: 'Proyecto 2', src: './image%20acnes%20avif/proyectos/TERRA2%20(1).avif' },
+        { alt: 'Proyecto 3', src: './image%20acnes%20avif/proyectos/TERRA3%20(1).avif' },
+        { alt: 'Proyecto 4', src: './image%20acnes%20avif/proyectos/CARRRIER1%20(1).avif' },
+        { alt: 'Proyecto 5', src: './image%20acnes%20avif/proyectos/CARRIER4%20(2).avif' },
+        { alt: 'Proyecto 6', src: './image%20acnes%20avif/proyectos/CARRIER3%20(1).avif' },
+        { alt: 'Proyecto 7', src: './image%20acnes%20avif/proyectos/f1.avif' },
+        { alt: 'Proyecto 8', src: './image%20acnes%20avif/proyectos/f2.avif' },
+        { alt: 'Proyecto 9', src: './image%20acnes%20avif/proyectos/f3.avif' },
+        { alt: 'Proyecto 10', src: './image%20acnes%20avif/proyectos/h1.avif' },
+        { alt: 'Proyecto 11', src: './image%20acnes%20avif/proyectos/h2.avif' },
+        { alt: 'Proyecto 12', src: './image%20acnes%20avif/proyectos/h3.avif' },
+        { alt: 'Proyecto 13', src: './image%20acnes%20avif/proyectos/bm1.avif' },
+        { alt: 'Proyecto 14', src: './image%20acnes%20avif/proyectos/bm2.avif' },
+        { alt: 'Proyecto 15', src: './image%20acnes%20avif/proyectos/bm3.avif' },
+        { alt: 'Proyecto 16', src: './image%20acnes%20avif/proyectos/v1.avif' },
+        { alt: 'Proyecto 17', src: './image%20acnes%20avif/proyectos/v2.avif' },
+        { alt: 'Proyecto 18', src: './image%20acnes%20avif/proyectos/v3.avif' },
+        { alt: 'Proyecto 19', src: './image%20acnes%20avif/proyectos/ppm1.avif' },
+        { alt: 'Proyecto 20', src: './image%20acnes%20avif/proyectos/ppm2.avif' },
+        { alt: 'Proyecto 21', src: './image%20acnes%20avif/proyectos/ppm3.avif' },
+        { alt: 'Proyecto 22', src: './image%20acnes%20avif/proyectos/hm1.avif' },
+        { alt: 'Proyecto 23', src: './image%20acnes%20avif/proyectos/hm2.avif' },
+        { alt: 'Proyecto 24', src: './image%20acnes%20avif/proyectos/hm3.avif' },
+        { alt: 'Proyecto 25', src: './image%20acnes%20avif/proyectos/gs1.avif' },
+        { alt: 'Proyecto 26', src: './image%20acnes%20avif/proyectos/gs2.avif' },
+        { alt: 'Proyecto 27', src: './image%20acnes%20avif/proyectos/gs3.avif' },
+        { alt: 'Proyecto 28', src: './image%20acnes%20avif/proyectos/x1.avif' },
+        { alt: 'Proyecto 29', src: './image%20acnes%20avif/proyectos/x2.avif' },
+        { alt: 'Proyecto 30', src: './image%20acnes%20avif/proyectos/x3.avif' },
+        { alt: 'Proyecto 31', src: './image%20acnes%20avif/proyectos/mh1.avif' },
+        { alt: 'Proyecto 32', src: './image%20acnes%20avif/proyectos/mh2.avif' },
+        { alt: 'Proyecto 33', src: './image%20acnes%20avif/proyectos/mh3.avif' }
+      ];
+
+      const heroSlider = document.getElementById('heroSlider');
       const prevBtn = document.getElementById('prevSlide');
       const nextBtn = document.getElementById('nextSlide');
       const dotsContainer = document.getElementById('sliderDots');
-      const effects = ['kenburns', 'slide-left', 'zoom-in', 'flip-x', 'slide-right', 'zoom-out'];
+
+      let currentDataset = null;
+      let slideElements = [];
+      let dotElements = [];
       let currentIndex = 0;
       let autoplayId;
-      const dots = [];
+      let exitTimer;
 
-      if (dotsContainer && slides.length) {
-        slides.forEach((_, idx) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'slider-dot' + (idx === 0 ? ' active' : '');
-          btn.setAttribute('aria-label', 'Ir a imagen ' + (idx + 1));
-          btn.addEventListener('click', () => {
-            showSlide(idx);
-            startAutoplay();
+      function isMobileViewport() {
+        return window.innerWidth <= 768;
+      }
+
+      function getGridConfig() {
+        return isMobileViewport() ? { cols: 7, rows: 5 } : { cols: 10, rows: 6 };
+      }
+
+      function buildTilesForSlide(slideEl, src) {
+        const { cols, rows } = getGridConfig();
+        slideEl.innerHTML = '';
+
+        const grid = document.createElement('div');
+        grid.className = 'tile-grid';
+        grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+        grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+
+        const total = cols * rows;
+        for (let i = 0; i < total; i++) {
+          const r = Math.floor(i / cols);
+          const c = i % cols;
+          const cell = document.createElement('div');
+          cell.className = 'tile-cell';
+          cell.style.backgroundImage = `url("${src}")`;
+          cell.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+          const posX = cols > 1 ? (c / (cols - 1)) * 100 : 50;
+          const posY = rows > 1 ? (r / (rows - 1)) * 100 : 50;
+          cell.style.backgroundPosition = `${posX}% ${posY}%`;
+          cell.dataset.order = String(r + c);
+          grid.appendChild(cell);
+        }
+
+        slideEl.appendChild(grid);
+        slideEl.dataset.built = '1';
+      }
+
+      function animateTilesIn(slideEl) {
+        if (!slideEl.dataset.built) {
+          buildTilesForSlide(slideEl, slideEl.dataset.src);
+        }
+        const cells = slideEl.querySelectorAll('.tile-cell');
+        cells.forEach((cell) => {
+          cell.classList.remove('is-in', 'is-out');
+          const order = Number(cell.dataset.order || 0);
+          const delay = order * 32 + Math.random() * 45;
+          cell.style.transitionDelay = `${Math.round(delay)}ms`;
+        });
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            cells.forEach((cell) => cell.classList.add('is-in'));
           });
-          dotsContainer.appendChild(btn);
-          dots.push(btn);
         });
       }
 
-      function showSlide(index) {
-        if (!slides.length) return;
-        currentIndex = (index + slides.length) % slides.length;
-        const nextFx = effects[currentIndex % effects.length];
+      function animateTilesOut(slideEl) {
+        if (!slideEl || !slideEl.dataset.built) return;
+        const cells = slideEl.querySelectorAll('.tile-cell');
+        cells.forEach((cell) => {
+          cell.classList.remove('is-in');
+          const order = Number(cell.dataset.order || 0);
+          const delay = order * 24 + Math.random() * 35;
+          cell.style.transitionDelay = `${Math.round(delay)}ms`;
+        });
 
-        slides.forEach((slide, i) => {
-          if (i === currentIndex) {
-            slide.setAttribute('data-fx', nextFx);
-            slide.classList.remove('active');
-            void slide.offsetWidth;
-            slide.classList.add('active');
-          } else {
-            slide.classList.remove('active');
+        requestAnimationFrame(() => {
+          cells.forEach((cell) => cell.classList.add('is-out'));
+        });
+      }
+
+      function showSlide(nextIdx) {
+        if (!slideElements.length) return;
+        const targetIdx = (nextIdx + slideElements.length) % slideElements.length;
+        if (targetIdx === currentIndex && slideElements[targetIdx].classList.contains('active')) return;
+
+        const prevSlide = slideElements[currentIndex];
+        const nextSlide = slideElements[targetIdx];
+
+        clearTimeout(exitTimer);
+        slideElements.forEach((el) => {
+          if (el !== prevSlide && el !== nextSlide) {
+            el.classList.remove('active', 'exiting');
           }
         });
 
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentIndex);
+        if (prevSlide && prevSlide !== nextSlide) {
+          prevSlide.classList.remove('active');
+          prevSlide.classList.add('exiting');
+          animateTilesOut(prevSlide);
+          exitTimer = setTimeout(() => {
+            prevSlide.classList.remove('exiting');
+          }, 680);
+        }
+
+        nextSlide.classList.remove('exiting');
+        nextSlide.classList.add('active');
+        animateTilesIn(nextSlide);
+
+        // Precargar siguiente diapositiva
+        const upcomingSlide = slideElements[(targetIdx + 1) % slideElements.length];
+        if (upcomingSlide && !upcomingSlide.dataset.built) {
+          buildTilesForSlide(upcomingSlide, upcomingSlide.dataset.src);
+        }
+
+        currentIndex = targetIdx;
+        dotElements.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
         });
+      }
+
+      function renderSliderForViewport(force) {
+        const useMobile = isMobileViewport();
+        const desiredData = useMobile ? mobileSlidesData : desktopSlidesData;
+
+        if (!force && currentDataset === desiredData && slideElements.length > 0) {
+          // Reconstruir rejilla si cambia proporción al redimensionar
+          slideElements.forEach((el) => {
+            delete el.dataset.built;
+            el.innerHTML = '';
+          });
+          if (slideElements[currentIndex]) {
+            animateTilesIn(slideElements[currentIndex]);
+          }
+          return;
+        }
+
+        currentDataset = desiredData;
+        currentIndex = 0;
+
+        heroSlider.querySelectorAll('.hero-slide').forEach((node) => node.remove());
+        if (dotsContainer) dotsContainer.innerHTML = '';
+        slideElements = [];
+        dotElements = [];
+
+        desiredData.forEach((item, idx) => {
+          const slide = document.createElement('div');
+          slide.className = 'hero-slide';
+          slide.dataset.src = item.src;
+          slide.setAttribute('aria-label', item.alt);
+          heroSlider.insertBefore(slide, prevBtn);
+          slideElements.push(slide);
+
+          if (dotsContainer) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Ir a ' + item.alt);
+            dot.addEventListener('click', () => {
+              showSlide(idx);
+              startAutoplay();
+            });
+            dotsContainer.appendChild(dot);
+            dotElements.push(dot);
+          }
+        });
+
+        if (slideElements[0]) {
+          slideElements[0].classList.add('active');
+          animateTilesIn(slideElements[0]);
+        }
+        if (slideElements[1]) {
+          buildTilesForSlide(slideElements[1], slideElements[1].dataset.src);
+        }
       }
 
       function startAutoplay() {
         stopAutoplay();
-        autoplayId = setInterval(() => showSlide(currentIndex + 1), 4200);
+        autoplayId = setInterval(() => showSlide(currentIndex + 1), 4400);
       }
 
       function stopAutoplay() {
@@ -1721,9 +1889,18 @@
         });
       }
 
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          renderSliderForViewport(false);
+        }, 200);
+      });
+
+      renderSliderForViewport(true);
       startAutoplay();
 
-      // Modal para galería
+      // 3. Modal para galería
       const modal = document.getElementById('imgModal');
       const modalImg = document.getElementById('modalImg');
       document.querySelectorAll('.project-item img').forEach(img => {
@@ -1742,7 +1919,7 @@
         });
       }
 
-      // Envío rápido vía correo
+      // 4. Envío rápido vía correo
       const quoteForm = document.getElementById('quoteForm');
       if (quoteForm) {
         quoteForm.addEventListener('submit', function(e) {
