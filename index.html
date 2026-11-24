@@ -245,7 +245,7 @@
       display: none;
     }
 
-    /* Barra de Menú: azul cielo en esquina, verde cian en el centro */
+    /* Barra de Menú en color negro */
     .nav-wrapper {
       position: sticky;
       top: 10px;
@@ -257,15 +257,12 @@
     .nav-inner {
       pointer-events: auto;
       max-width: 1180px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.42), transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.3), transparent 55%),
-        linear-gradient(110deg, rgba(22, 54, 138, 0.84) 0%, rgba(23, 92, 131, 0.8) 50%, rgba(22, 54, 138, 0.86) 100%);
+      background: #090b0f;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 0px solid rgba(0, 255, 247, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(7, 35, 65, 0.22);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
       padding: 6px 14px;
       display: flex;
       align-items: center;
@@ -283,9 +280,9 @@
 
     .nav-toggle {
       display: none;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
       color: #ffffff;
-      border: 1px solid rgba(56, 189, 248, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 9px;
       padding: 6px 11px;
       font-family: 'Montserrat', sans-serif;
@@ -331,15 +328,15 @@
     .nav-menu > li:focus-within > a,
     .has-dropdown:hover .dropdown-trigger,
     .has-dropdown.open .dropdown-trigger {
-      background: rgba(0, 255, 247, 0.2);
+      background: rgba(0, 255, 247, 0.14);
       color: var(--cyan);
     }
 
     .nav-menu > li > a.nav-cta-pill {
-      background: linear-gradient(90deg, rgba(22, 54, 138, 0.9), rgba(56, 189, 248, 0.45));
+      background: #141820;
       color: #ffffff;
       font-weight: 700;
-      border: 1px solid rgba(0, 255, 247, 0.55);
+      border: 1px solid rgba(0, 255, 247, 0.45);
       border-radius: 999px;
       padding: 8px 16px;
     }
@@ -356,15 +353,12 @@
       top: 100%;
       left: 0;
       min-width: 270px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.22), transparent 60%),
-        linear-gradient(160deg, rgba(22, 54, 138, 0.96), rgba(11, 27, 45, 0.98));
+      background: #0b0e14;
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(0, 255, 247, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       list-style: none;
       border-radius: 14px;
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
       z-index: 950;
       padding: 8px;
       margin-top: 6px;
@@ -408,12 +402,12 @@
     }
 
     .dropdown-panel li a:hover {
-      background: rgba(0, 255, 247, 0.18);
+      background: rgba(0, 255, 247, 0.15);
       color: var(--cyan);
       padding-left: 17px;
     }
 
-    /* Slider Principal + Transición de Cuadritos (Mosaico) + Olas Traslúcidas */
+    /* Slider Principal + Transición Suave de Cuadritos (Sin Líneas Negras) + Olas Traslúcidas */
     .hero-stage {
       position: relative;
       margin-top: -32px;
@@ -424,7 +418,7 @@
       width: 100%;
       height: clamp(760px, 92vh, 1020px);
       overflow: hidden;
-      background: #07111c;
+      background: transparent;
     }
 
     .hero-slide {
@@ -433,7 +427,7 @@
       opacity: 0;
       z-index: 0;
       pointer-events: none;
-      transition: opacity 0.45s ease;
+      transition: opacity 0.65s ease;
     }
 
     .hero-slide.active {
@@ -448,13 +442,13 @@
       pointer-events: none;
     }
 
-    /* Cuadritos que forman y deshacen la imagen en mosaico */
+    /* Cuadritos suaves y sellados sin huecos ni líneas entre ellos */
     .tile-grid {
       position: absolute;
-      inset: 0;
+      inset: -0.5px;
       display: grid;
-      width: 100%;
-      height: 100%;
+      width: calc(100% + 1px);
+      height: calc(100% + 1px);
     }
 
     .tile-cell {
@@ -462,10 +456,13 @@
       height: 100%;
       background-repeat: no-repeat;
       opacity: 0;
-      transform: scale(0.72);
+      transform: scale(0.92);
+      outline: 1px solid transparent;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       transition:
-        opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.62s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.68s cubic-bezier(0.22, 0.61, 0.36, 1);
       will-change: opacity, transform;
     }
 
@@ -476,7 +473,7 @@
 
     .hero-slide.exiting .tile-cell.is-out {
       opacity: 0;
-      transform: scale(0.68);
+      transform: scale(0.9);
     }
 
     .slider-btn {
@@ -1088,9 +1085,11 @@
       }
 
       .nav-inner {
+        background: #090b0f;
         border-radius: 0;
         border-left: 0;
         border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         justify-content: space-between;
         padding: 8px 14px;
       }
@@ -1111,12 +1110,9 @@
         right: 0;
         width: min(320px, 86vw);
         height: 100vh;
-        background:
-          radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 45%),
-          radial-gradient(circle at 50% 50%, rgba(0, 255, 247, 0.2), transparent 55%),
-          linear-gradient(180deg, rgba(22, 54, 138, 0.98) 0%, rgba(9, 21, 38, 0.99) 100%);
+        background: #090b0f;
         backdrop-filter: blur(14px);
-        border-left: 1px solid rgba(0, 255, 247, 0.35);
+        border-left: 1px solid rgba(255, 255, 255, 0.14);
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
@@ -1127,7 +1123,7 @@
         transform: translateX(100%);
         visibility: hidden;
         transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s ease;
-        box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
+        box-shadow: -12px 0 32px rgba(0, 0, 0, 0.55);
       }
 
       .nav-menu.active {
@@ -1144,7 +1140,7 @@
         gap: 10px;
         padding: 8px 8px 14px;
         margin-bottom: 6px;
-        border-bottom: 1px solid rgba(0, 255, 247, 0.22);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       }
 
       .drawer-close-btn {
@@ -1152,9 +1148,9 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.08);
         color: #ffffff;
-        border: 1px solid rgba(0, 255, 247, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 999px;
         padding: 6px 13px;
         font-family: 'Montserrat', sans-serif;
@@ -1185,7 +1181,7 @@
         justify-content: space-between;
         padding: 12px 14px;
         border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .nav-menu > li > a.nav-cta-pill {
@@ -1198,8 +1194,8 @@
         display: none;
         position: static;
         box-shadow: none;
-        background: rgba(0, 255, 247, 0.08);
-        border: 1px solid rgba(0, 255, 247, 0.2);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         margin-top: 6px;
         padding: 6px;
       }
@@ -1290,7 +1286,7 @@
     </div>
   </header>
 
-  <!-- Menú Traslúcido Flotante (PC) / Cajón Deslizable (Móvil) -->
+  <!-- Menú Negro Flotante (PC) / Cajón Deslizable (Móvil) -->
   <nav class="nav-wrapper" id="mainNav" aria-label="Navegación principal">
     <div class="container nav-inner">
       <a href="#top" class="nav-brand-mini" aria-label="Ir arriba">Discover your brilliance</a>
@@ -1343,7 +1339,7 @@
   </nav>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <!-- Slider Principal Dinámico (Móvil vs PC) + Transición en Cuadritos + Olas Traslúcidas -->
+  <!-- Slider Principal Dinámico (Móvil vs PC) + Transición Suave de Cuadritos + Olas Traslúcidas -->
   <div class="hero-stage" id="top">
     <section class="hero-slider" id="heroSlider" aria-label="Galería destacada de anuncios luminosos">
       <button type="button" class="slider-btn prev" id="prevSlide" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button>
@@ -1530,7 +1526,7 @@
 
   <script>
     (function() {
-      // 1. Menú traslúcido (cajón en móvil con botón ocultar y logo encima)
+      // 1. Menú negro (cajón en móvil con botón ocultar y logo encima)
       const navToggle = document.getElementById('navToggle');
       const navToggleIcon = document.getElementById('navToggleIcon');
       const drawerCloseBtn = document.getElementById('drawerCloseBtn');
@@ -1625,7 +1621,7 @@
         });
       }
 
-      // 2. Slider dinámico (Móvil vs PC desde acnespublicidad.com) + Transición de cuadritos
+      // 2. Slider dinámico (Móvil vs PC desde acnespublicidad.com) + Transición suave de cuadritos
       const BASE_URL = 'https://www.acnespublicidad.com';
 
       const mobileSlidesData = [
@@ -1708,7 +1704,7 @@
       }
 
       function getGridConfig() {
-        return isMobileViewport() ? { cols: 7, rows: 5 } : { cols: 10, rows: 6 };
+        return isMobileViewport() ? { cols: 6, rows: 4 } : { cols: 8, rows: 5 };
       }
 
       function buildTilesForSlide(slideEl, src) {
@@ -1747,7 +1743,7 @@
         cells.forEach((cell) => {
           cell.classList.remove('is-in', 'is-out');
           const order = Number(cell.dataset.order || 0);
-          const delay = order * 32 + Math.random() * 45;
+          const delay = order * 45 + Math.random() * 60;
           cell.style.transitionDelay = `${Math.round(delay)}ms`;
         });
 
@@ -1764,7 +1760,7 @@
         cells.forEach((cell) => {
           cell.classList.remove('is-in');
           const order = Number(cell.dataset.order || 0);
-          const delay = order * 24 + Math.random() * 35;
+          const delay = order * 35 + Math.random() * 50;
           cell.style.transitionDelay = `${Math.round(delay)}ms`;
         });
 
@@ -1794,7 +1790,7 @@
           animateTilesOut(prevSlide);
           exitTimer = setTimeout(() => {
             prevSlide.classList.remove('exiting');
-          }, 680);
+          }, 950);
         }
 
         nextSlide.classList.remove('exiting');
@@ -1868,7 +1864,7 @@
 
       function startAutoplay() {
         stopAutoplay();
-        autoplayId = setInterval(() => showSlide(currentIndex + 1), 4400);
+        autoplayId = setInterval(() => showSlide(currentIndex + 1), 4600);
       }
 
       function stopAutoplay() {
