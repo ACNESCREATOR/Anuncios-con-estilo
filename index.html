@@ -110,11 +110,12 @@
       padding: 0 16px;
     }
 
-    /* Barra superior */
+   /* Barra superior tech */
     .top-bar {
-      background: linear-gradient(70deg, #0761b5 10%, #00fff7 90%);
+      background: linear-gradient(90deg, #07192d 0%, #0d3b66 55%, #0761b5 100%);
       color: var(--white);
-      font-size: 14px;
+      font-size: 13.5px;
+      border-bottom: 1px solid rgba(0, 255, 247, 0.25);
     }
 
     .top-bar__inner {
@@ -123,7 +124,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      min-height: 40px;
+      min-height: 44px;
       padding: 6px 0;
     }
 
@@ -136,48 +137,81 @@
       list-style: none;
     }
 
-    .top-bar__badge {
-      background: var(--white);
-      color: #000000;
+    /* Botón de contacto moderno tipo píldora neon/tech */
+    .top-bar__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(0, 255, 247, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(0, 255, 247, 0.65);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 13px;
-      padding: 4px 12px;
-      border-radius: 3px;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+      box-shadow: 0 0 12px rgba(0, 255, 247, 0.15);
     }
 
-    .top-bar__contact a {
-      color: var(--white);
+    .top-bar__cta:hover {
+      background: var(--cyan);
+      color: #061322;
+      border-color: var(--cyan);
+      box-shadow: 0 0 18px rgba(0, 255, 247, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.65; }
+    }
+
+    .top-bar__contact a:not(.top-bar__cta) {
+      color: rgba(255, 255, 255, 0.9);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .top-bar__contact a:hover {
-      opacity: 0.85;
+    .top-bar__contact a:not(.top-bar__cta):hover {
+      color: var(--cyan);
     }
 
     .top-bar__social a {
       width: 28px;
       height: 28px;
-      border-radius: 50%;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: var(--white);
-      background: rgba(0, 0, 0, 0.25);
-      font-size: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
     }
 
     .top-bar__social a:hover {
+      color: #061322;
+      background: var(--cyan);
+      border-color: var(--cyan);
       transform: translateY(-2px);
-      background: rgba(0, 0, 0, 0.45);
     }
 
     /* Cabecera / Logo */
     .site-header {
-      background: var(--white);
-      padding: 20px 0;
-      border-bottom: 1px solid #eeeeee;
+      background: radial-gradient(circle at top, #f4fafe 0%, #ffffff 72%);
+      padding: 16px 0;
+      border-bottom: 1px solid #e6eff6;
     }
 
     .site-header__brand {
@@ -187,37 +221,67 @@
     }
 
     .site-header__logo {
-      max-height: 120px;
+      max-height: 110px;
       width: auto;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .site-header__logo:hover {
       transform: scale(1.02);
-      opacity: 0.9;
+      filter: drop-shadow(0 6px 14px rgba(23, 92, 131, 0.16));
     }
 
-    /* Navegación */
+    /* Navegación Tech Flotante en PC */
     .nav-wrapper {
-      background: var(--primary);
       position: sticky;
-      top: 0;
+      top: 10px;
       z-index: 900;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      padding: 0 12px;
+      pointer-events: none;
+    }
+
+    .nav-inner {
+      pointer-events: auto;
+      max-width: 1180px;
+      background: rgba(11, 27, 45, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 247, 0.25);
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(5, 16, 30, 0.22);
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-brand-mini {
+      display: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .tech-bracket {
+      color: var(--cyan);
+      margin: 0 2px;
     }
 
     .nav-toggle {
       display: none;
-      width: 100%;
-      background: var(--primary);
-      color: var(--white);
-      border: 0;
-      padding: 14px 16px;
-      font-size: 16px;
+      background: rgba(0, 255, 247, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 255, 247, 0.45);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
     }
 
     .nav-menu {
@@ -226,142 +290,333 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      gap: 4px;
     }
 
     .nav-menu > li {
       position: relative;
     }
 
-    .nav-menu > li > a {
+    .nav-menu > li > a,
+    .dropdown-trigger {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      color: var(--white);
-      padding: 13px 16px;
-      font-size: 14px;
-      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
       white-space: nowrap;
+      background: transparent;
+      border: 0;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.22s ease;
     }
 
     .nav-menu > li > a:hover,
-    .nav-menu > li:focus-within > a {
-      background: var(--primary-dark);
+    .nav-menu > li:focus-within > a,
+    .has-dropdown:hover .dropdown-trigger,
+    .has-dropdown.open .dropdown-trigger {
+      background: rgba(0, 255, 247, 0.14);
       color: var(--cyan);
     }
 
-    .has-dropdown > ul {
+    .nav-menu > li > a.nav-cta-pill {
+      background: linear-gradient(90deg, #0761b5, #00b8d4);
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 14px rgba(0, 184, 212, 0.3);
+    }
+
+    .nav-menu > li > a.nav-cta-pill:hover {
+      background: var(--cyan);
+      color: #061322;
+    }
+
+    .dropdown-panel {
       display: none;
       position: absolute;
-      top: 100%;
+      top: calc(100% + 8px);
       left: 0;
-      min-width: 255px;
-      background: #23282d;
+      min-width: 265px;
+      background: rgba(12, 26, 43, 0.97);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 247, 0.25);
       list-style: none;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      border-radius: 14px;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
       z-index: 950;
-      padding: 6px 0;
+      padding: 8px;
     }
 
-    .has-dropdown:hover > ul,
-    .has-dropdown.open > ul {
+    .has-dropdown:hover .dropdown-panel,
+    .has-dropdown.open .dropdown-panel {
       display: block;
     }
 
-    .has-dropdown > ul li a {
-      display: block;
-      padding: 10px 18px;
-      color: #e6e6e6;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    .dropdown-panel li a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 13px;
+      border-radius: 8px;
+      color: #e6f1f8;
+      font-size: 13.5px;
     }
 
-    .has-dropdown > ul li:last-child a {
-      border-bottom: 0;
+    .dropdown-panel li a:hover {
+      background: rgba(0, 255, 247, 0.14);
+      color: var(--cyan);
+      padding-left: 17px;
     }
 
-    .has-dropdown > ul li a:hover {
-      background: var(--primary);
-      color: var(--white);
-      padding-left: 22px;
+    /* Slider Principal + Olas más bajas para ver bien la foto */
+    .hero-stage {
+      position: relative;
+      margin-top: -28px; /* se integra sutilmente bajo la barra flotante */
     }
 
-    /* Slider Principal */
     .hero-slider {
       position: relative;
       width: 100%;
-      height: 440px;
+      height: clamp(440px, 62vh, 620px);
       overflow: hidden;
-      background: #0b1926;
+      background: #07111c;
+      perspective: 1200px;
     }
 
     .hero-slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity 0.8s ease;
+      z-index: 0;
       pointer-events: none;
-    }
-
-    .hero-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 1;
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 6s ease;
+    }
+
+    /* Variantes de transición estilo WOWSlider */
+    .hero-slide[data-fx="kenburns"] { transform: scale(1.04); }
+    .hero-slide[data-fx="kenburns"].active { transform: scale(1); }
+    .hero-slide[data-fx="kenburns"].active img { transform: scale(1.07); }
+
+    .hero-slide[data-fx="slide-left"] { transform: translateX(7%); }
+    .hero-slide[data-fx="slide-left"].active { transform: translateX(0); }
+
+    .hero-slide[data-fx="slide-right"] { transform: translateX(-7%); }
+    .hero-slide[data-fx="slide-right"].active { transform: translateX(0); }
+
+    .hero-slide[data-fx="zoom-in"] { transform: scale(0.9); }
+    .hero-slide[data-fx="zoom-in"].active { transform: scale(1); }
+
+    .hero-slide[data-fx="zoom-out"] { transform: scale(1.14); }
+    .hero-slide[data-fx="zoom-out"].active { transform: scale(1); }
+
+    .hero-slide[data-fx="flip-x"] { transform: rotateX(14deg) scale(0.96); transform-origin: center bottom; }
+    .hero-slide[data-fx="flip-x"].active { transform: rotateX(0deg) scale(1); }
+
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 2;
+      pointer-events: auto;
     }
 
     .slider-btn {
       position: absolute;
-      top: 50%;
+      top: 46%;
       transform: translateY(-50%);
-      z-index: 4;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(255, 255, 255, 0.88);
-      color: var(--primary);
+      z-index: 5;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 247, 0.45);
+      background: rgba(9, 20, 34, 0.65);
+      backdrop-filter: blur(6px);
+      color: var(--cyan);
       font-size: 16px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
     }
 
     .slider-btn:hover {
-      background: var(--white);
-      transform: translateY(-50%) scale(1.06);
+      background: var(--cyan);
+      color: #061322;
+      transform: translateY(-50%) scale(1.05);
     }
 
-    .slider-btn.prev { left: 16px; }
-    .slider-btn.next { right: 16px; }
+    .slider-btn.prev { left: 18px; }
+    .slider-btn.next { right: 18px; }
 
+    .slider-dots {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(6, 15, 26, 0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .slider-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .slider-dot.active {
+      width: 24px;
+      background: var(--cyan);
+    }
+
+    /* Olas compactas en la base para mostrar más imagen */
     .slider-border {
       display: block;
       width: 100%;
-      height: 54px;
+      height: 34px;
       position: relative;
-      z-index: 5;
-      margin-top: -54px;
+      z-index: 4;
+      margin-top: -34px;
       pointer-events: none;
     }
 
-    .parallax1 > use { animation: move-wave 10s linear infinite; }
-    .parallax2 > use { animation: move-wave 8s linear infinite reverse; }
-    .parallax3 > use { animation: move-wave 6s linear infinite; }
-    .parallax4 > use { animation: move-wave 4s linear infinite reverse; }
-
-    @keyframes move-wave {
-      0% { transform: translate3d(-90px, 0, 0); }
-      100% { transform: translate3d(85px, 0, 0); }
+    /* Cajón lateral tech en móvil */
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 11, 20, 0.65);
+      backdrop-filter: blur(3px);
+      z-index: 890;
     }
 
+    .nav-backdrop.open {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-slider {
+        height: clamp(310px, 46vh, 420px);
+      }
+
+      .slider-border {
+        height: 26px;
+        margin-top: -26px;
+      }
+
+      .slider-dots {
+        bottom: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-wrapper {
+        top: 0;
+        padding: 0;
+      }
+
+      .nav-inner {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        justify-content: space-between;
+        padding: 10px 16px;
+      }
+
+      .nav-brand-mini {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 86vw);
+        height: 100vh;
+        background: #091726;
+        border-left: 1px solid rgba(0, 255, 247, 0.3);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 6px;
+        padding: 22px 16px 32px;
+        overflow-y: auto;
+        z-index: 960;
+        transition: right 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
+      }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .nav-menu > li > a,
+      .dropdown-trigger {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .nav-menu > li > a.nav-cta-pill {
+        justify-content: center;
+        margin-top: 8px;
+        border-radius: 12px;
+      }
+
+      .dropdown-panel {
+        position: static;
+        box-shadow: none;
+        background: rgba(0, 255, 247, 0.05);
+        border: 1px solid rgba(0, 255, 247, 0.14);
+        margin-top: 6px;
+        padding: 6px;
+      }
+
+      .has-dropdown.open .caret {
+        transform: rotate(180deg);
+      }
+
+      .caret {
+        transition: transform 0.25s ease;
+      }
+
+      .hero-slider {
+        height: 275px;
+      }
+
+      .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+      }
+    
     /* Badges de Sección */
     .section-header {
       text-align: center;
@@ -870,11 +1125,17 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5N9RTW2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Barra Superior -->
+<!-- Barra Superior Tech -->
   <div class="top-bar">
     <div class="container top-bar__inner">
       <ul class="top-bar__contact">
-        <li><span class="top-bar__badge">¡Contáctenos Hoy!</span></li>
+        <li>
+          <a href="#contacto" class="top-bar__cta">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>Contáctenos Hoy</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </li>
         <li><a href="mailto:anunciosconestilo@gmail.com"><i class="fa-regular fa-envelope"></i> anunciosconestilo@gmail.com</a></li>
         <li><a href="tel:5521913826"><i class="fa-solid fa-phone"></i> 55 2191 3826</a></li>
       </ul>
@@ -900,12 +1161,16 @@
     </div>
   </header>
 
-  <!-- Menú Principal -->
-  <nav class="nav-wrapper" aria-label="Navegación principal">
-    <div class="container">
+  <!-- Menú Tech Flotante (PC) / Cajón Deslizable (Móvil) -->
+  <nav class="nav-wrapper" id="mainNav" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-brand-mini" aria-label="Ir arriba">
+        <span class="tech-bracket">[</span>ACNES<span class="tech-bracket">]</span>
+      </a>
+
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
-        <span>MENÚ</span>
-        <i class="fa-solid fa-bars"></i>
+        <span class="nav-toggle__label"><i class="fa-solid fa-terminal"></i> MENÚ</span>
+        <i class="fa-solid fa-bars" id="navToggleIcon"></i>
       </button>
 
       <ul class="nav-menu" id="navMenu">
@@ -917,8 +1182,11 @@
         <li><a href="#pilares"><i class="fa-solid fa-plane-departure"></i> Despegue</a></li>
 
         <li class="has-dropdown" id="estilosDropdown">
-          <a href="#estilos" id="estilosToggle"><i class="fa-solid fa-folder-open"></i> Estilos de Anuncios <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i></a>
-          <ul>
+          <button type="button" class="dropdown-trigger" id="estilosToggle" aria-expanded="false">
+            <span><i class="fa-solid fa-layer-group"></i> Estilos de Anuncios</span>
+            <i class="fa-solid fa-chevron-down caret"></i>
+          </button>
+          <ul class="dropdown-panel">
             <li><a href="https://www.anunciosconestilo.mx/p/letras-3d-tipo-pueblo-magico.html" target="_blank" rel="noopener noreferrer">Letras 3D Monumentales</a></li>
             <li><a href="https://www.anunciosconestilo.mx/2024/05/letras-3d-tipo-retro.html" target="_blank" rel="noopener noreferrer">Letras 3D estilo Retro</a></li>
             <li><a href="https://www.anunciosconestilo.mx/2024/05/letras-3d-en-aluminio-con-acrilico.html" target="_blank" rel="noopener noreferrer">Letras 3D con Aluminio y Acrílico</a></li>
@@ -930,55 +1198,59 @@
           </ul>
         </li>
 
-        <li><a href="#contacto"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
+        <li><a href="#contacto" class="nav-cta-pill"><i class="fa-solid fa-bolt"></i> Contacto</a></li>
       </ul>
     </div>
   </nav>
+  <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <!-- Slider Principal -->
-  <section class="hero-slider" id="top" aria-label="Galería destacada de anuncios luminosos">
-    <div class="hero-slide active">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSMdkusSMg2jwBHyF_GxdvwNYcNyohXAOSsLGi75yLaNYiStTEfwM-z6TA7chKmu9XhiUiDTSvb78P6UJxkEYJldZsSaXUE776q0-wpLIcpWCbKpy9Ev5aoqmQnYtsMnzw8kNWwXrdmOWSB2emIksjb1sU8YnFOoFDpdzjmHoqeEQP1Y3DiU30PJXFNF4/s1600/gracias.png" alt="Anuncio luminoso personalizado" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4FsLEbtzo1bZfcctjfXQvQ0FYLKyUQLuKLgQsiHHT83LXdjGtKWG3toWjGetipQ-IjFbqjhEWWJGjmO5NvZ04ZFKPkTV07r34t91zlNGjC0ywtkzy2AjWyBoEI_nYsZv44I6kqfmbxfz0_s-PHhDvpBkSoyO7ujmgEsIfAI90-bIPQXFfWIdRGbaexd8/s1600/manekineko.png" alt="Diseño de anuncio luminoso temático" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6z3UU_M1IroXkpdzw5MUgdFvjRZVM6ICQAxrlgHg1y4kLZOLpdMhIMqrjUUGM32hDiwiJxqaiN7Er80zS1ptm_We3tYwojJS_MCJ7XSxBBX4Qf1sKAl318wBU6Y5xBJDjxXf8Xp7UgkGHp7rRN14CB9C9fwA0U9zBVkBK2D9NyDVHe11vsFuAmCql_js/s1600/PUB123.png" alt="Anuncio publicitario iluminado" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcJBvO7Udd4s6CeKAmRf1cMcTvcLOjUJfGwkVul68KL06n2iMW7Go8DyO4LgS9Vw3Oik18POU3R2fdWLgvfhrt5iiq9PfSOJTNvZoTLRBNQcTOBM4TgN7MHkAhX1nkt0tpBZZrhtrbXXWUUpWhpP0e_69-SLs67NC8unfZAH-vzNEp8D7vBdNwbndR7WA/s1600/y.png" alt="Letrero luminoso en fachada" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo2Y5MC7V9C_A_jNl670KUt1x_m6HDcOGuf7PbK-AAXMebr6G2eERvJNPXDHKDweeESG51GAawxe0-fAq5Blo1qI1uPAwn68yFs28_bX_OWimuWqeLAnqXJntoD7tdOdVdLWpOTGxBD8rHbSE-SxPmD3h7PUdUlI5KnFI8sF6Rshl9BPEzSVJFKWXQYLg/s1600/plaza2.png" alt="Anuncio luminoso para plaza comercial" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEETjCJ8A1skcYBixxT9w6rPheCpbX0wUfU6BVHxMTDYrGC3ZKCkN8SNsmnzUIWXsXA_JpRs0LNI4Nyfy4PyXCs4TtXPJuyUSG1j0oq_sKWGo1rvgfjSqtfBygYRsUAdeaIBt3etRK-UQUVGPAl-rEsyOsR65AFuSWzyMBCYNQZoAGMLULGMbDX9r9efI/s1600/hospivet1.png" alt="Señalización luminosa veterinaria" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3DFtTiEf6lVT_0arEOlgD-kGSB50VWGtdge43qonhbhAVu0PfQR3NX8SNv3IXUmdMcyTBbK-1M5bOv0O6zvleISTSX7hZMJOFKzVIeOv32dLRrZ5KL292BR-J6CZ6S-r2VbSh5IYX0gggkDuRx2bbTfMJhVxgZcNCRBkr_NztucLKwqeCxLhVl_k0gxU/s1600/hospivet2.png" alt="Letras corpóreas iluminadas" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfHR9zFBntVn9TB1VNfm8e-xLt0q4fTydzs9Vu8hgEXgfOAV_aExUqZpGl6JGYK5AVkI3XOzhsd1_opppe0hhlNWRHilis2udJtDUH-CSCpNhNqX3NtS7KiUjjFQmkjoxzPHJXItnZiJW1ZL7-K_kkmOzyuAgGCpNzCcaMF2vlO-Lu-28UK1l4TPrxAFU/s1600/bodega1.png" alt="Anuncio exterior de alto impacto" />
-    </div>
-    <div class="hero-slide">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjO0-KZjfElZkgUVdXPq_WpOhW9Xn3nlSqzMlMUnOpuRZkdBtleQGYTS7hYvMIazXom2L3xrL3b6b3fBwBuXxmz0b2-GIWyj05PG98ziUj-AA9qHO0MPsPeM57frb4_ba3GNOtMXoHgi47ECwInVY4HjSfzxWgFluNzSmL0HcoqAoJeaEXLjb58kl3n/s1600/HermesMusicClub.png" alt="Anuncio luminoso para negocio nocturno" />
-    </div>
+  <!-- Slider Principal con Efectos Tipo WOWSlider + Olas Bajas -->
+  <div class="hero-stage" id="top">
+    <section class="hero-slider" aria-label="Galería destacada de anuncios luminosos">
+      <div class="hero-slide active" data-fx="kenburns">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSMdkusSMg2jwBHyF_GxdvwNYcNyohXAOSsLGi75yLaNYiStTEfwM-z6TA7chKmu9XhiUiDTSvb78P6UJxkEYJldZsSaXUE776q0-wpLIcpWCbKpy9Ev5aoqmQnYtsMnzw8kNWwXrdmOWSB2emIksjb1sU8YnFOoFDpdzjmHoqeEQP1Y3DiU30PJXFNF4/s1600/gracias.png" alt="Anuncio luminoso personalizado" />
+      </div>
+      <div class="hero-slide" data-fx="slide-left">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4FsLEbtzo1bZfcctjfXQvQ0FYLKyUQLuKLgQsiHHT83LXdjGtKWG3toWjGetipQ-IjFbqjhEWWJGjmO5NvZ04ZFKPkTV07r34t91zlNGjC0ywtkzy2AjWyBoEI_nYsZv44I6kqfmbxfz0_s-PHhDvpBkSoyO7ujmgEsIfAI90-bIPQXFfWIdRGbaexd8/s1600/manekineko.png" alt="Diseño de anuncio luminoso temático" />
+      </div>
+      <div class="hero-slide" data-fx="zoom-in">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6z3UU_M1IroXkpdzw5MUgdFvjRZVM6ICQAxrlgHg1y4kLZOLpdMhIMqrjUUGM32hDiwiJxqaiN7Er80zS1ptm_We3tYwojJS_MCJ7XSxBBX4Qf1sKAl318wBU6Y5xBJDjxXf8Xp7UgkGHp7rRN14CB9C9fwA0U9zBVkBK2D9NyDVHe11vsFuAmCql_js/s1600/PUB123.png" alt="Anuncio publicitario iluminado" />
+      </div>
+      <div class="hero-slide" data-fx="flip-x">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcJBvO7Udd4s6CeKAmRf1cMcTvcLOjUJfGwkVul68KL06n2iMW7Go8DyO4LgS9Vw3Oik18POU3R2fdWLgvfhrt5iiq9PfSOJTNvZoTLRBNQcTOBM4TgN7MHkAhX1nkt0tpBZZrhtrbXXWUUpWhpP0e_69-SLs67NC8unfZAH-vzNEp8D7vBdNwbndR7WA/s1600/y.png" alt="Letrero luminoso en fachada" />
+      </div>
+      <div class="hero-slide" data-fx="slide-right">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo2Y5MC7V9C_A_jNl670KUt1x_m6HDcOGuf7PbK-AAXMebr6G2eERvJNPXDHKDweeESG51GAawxe0-fAq5Blo1qI1uPAwn68yFs28_bX_OWimuWqeLAnqXJntoD7tdOdVdLWpOTGxBD8rHbSE-SxPmD3h7PUdUlI5KnFI8sF6Rshl9BPEzSVJFKWXQYLg/s1600/plaza2.png" alt="Anuncio luminoso para plaza comercial" />
+      </div>
+      <div class="hero-slide" data-fx="kenburns">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEETjCJ8A1skcYBixxT9w6rPheCpbX0wUfU6BVHxMTDYrGC3ZKCkN8SNsmnzUIWXsXA_JpRs0LNI4Nyfy4PyXCs4TtXPJuyUSG1j0oq_sKWGo1rvgfjSqtfBygYRsUAdeaIBt3etRK-UQUVGPAl-rEsyOsR65AFuSWzyMBCYNQZoAGMLULGMbDX9r9efI/s1600/hospivet1.png" alt="Señalización luminosa veterinaria" />
+      </div>
+      <div class="hero-slide" data-fx="zoom-out">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3DFtTiEf6lVT_0arEOlgD-kGSB50VWGtdge43qonhbhAVu0PfQR3NX8SNv3IXUmdMcyTBbK-1M5bOv0O6zvleISTSX7hZMJOFKzVIeOv32dLRrZ5KL292BR-J6CZ6S-r2VbSh5IYX0gggkDuRx2bbTfMJhVxgZcNCRBkr_NztucLKwqeCxLhVl_k0gxU/s1600/hospivet2.png" alt="Letras corpóreas iluminadas" />
+      </div>
+      <div class="hero-slide" data-fx="slide-left">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfHR9zFBntVn9TB1VNfm8e-xLt0q4fTydzs9Vu8hgEXgfOAV_aExUqZpGl6JGYK5AVkI3XOzhsd1_opppe0hhlNWRHilis2udJtDUH-CSCpNhNqX3NtS7KiUjjFQmkjoxzPHJXItnZiJW1ZL7-K_kkmOzyuAgGCpNzCcaMF2vlO-Lu-28UK1l4TPrxAFU/s1600/bodega1.png" alt="Anuncio exterior de alto impacto" />
+      </div>
+      <div class="hero-slide" data-fx="flip-x">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjO0-KZjfElZkgUVdXPq_WpOhW9Xn3nlSqzMlMUnOpuRZkdBtleQGYTS7hYvMIazXom2L3xrL3b6b3fBwBuXxmz0b2-GIWyj05PG98ziUj-AA9qHO0MPsPeM57frb4_ba3GNOtMXoHgi47ECwInVY4HjSfzxWgFluNzSmL0HcoqAoJeaEXLjb58kl3n/s1600/HermesMusicClub.png" alt="Anuncio luminoso para negocio nocturno" />
+      </div>
 
-    <button type="button" class="slider-btn prev" id="prevSlide" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button>
-    <button type="button" class="slider-btn next" id="nextSlide" aria-label="Siguiente imagen"><i class="fa-solid fa-chevron-right"></i></button>
-  </section>
+      <button type="button" class="slider-btn prev" id="prevSlide" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button>
+      <button type="button" class="slider-btn next" id="nextSlide" aria-label="Siguiente imagen"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="slider-dots" id="sliderDots" aria-label="Seleccionar diapositiva"></div>
+    </section>
 
-  <!-- Ondas Decorativas -->
-  <svg class="slider-border" preserveAspectRatio="none" viewBox="0 24 150 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-    </defs>
-    <g class="parallax1"><use fill="#00fff7" x="50" y="3" href="#gentle-wave" /></g>
-    <g class="parallax2"><use fill="#4579e2" x="50" y="0" href="#gentle-wave" /></g>
-    <g class="parallax3"><use fill="#3461c1" x="50" y="9" href="#gentle-wave" /></g>
-    <g class="parallax4"><use fill="#ffffff" x="50" y="6" href="#gentle-wave" /></g>
-  </svg>
+    <!-- Ondas Superpuestas Bajas (dejan ver mucho más la foto en PC y móvil) -->
+    <svg class="slider-border" preserveAspectRatio="none" viewBox="0 24 150 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax1"><use fill="rgba(0, 255, 247, 0.45)" x="50" y="3" href="#gentle-wave" /></g>
+      <g class="parallax2"><use fill="rgba(69, 121, 226, 0.55)" x="50" y="0" href="#gentle-wave" /></g>
+      <g class="parallax3"><use fill="rgba(52, 97, 193, 0.72)" x="50" y="9" href="#gentle-wave" /></g>
+      <g class="parallax4"><use fill="#ffffff" x="50" y="6" href="#gentle-wave" /></g>
+    </svg>
+  </div>
 
   <!-- Pilares de Propuesta -->
   <section class="pillars-section" id="pilares">
@@ -1146,47 +1418,102 @@
   </footer>
 
   <script>
-    // Menú móvil y submenú
+  // Menú tech (cajón en móvil) + Slider con efectos tipo WOWSlider
     (function() {
       const navToggle = document.getElementById('navToggle');
+      const navToggleIcon = document.getElementById('navToggleIcon');
       const navMenu = document.getElementById('navMenu');
+      const navBackdrop = document.getElementById('navBackdrop');
       const dropdown = document.getElementById('estilosDropdown');
       const dropdownToggle = document.getElementById('estilosToggle');
 
-      if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-          const isOpen = navMenu.classList.toggle('active');
-          navToggle.setAttribute('aria-expanded', String(isOpen));
+      function setDrawer(open) {
+        if (!navMenu || !navToggle) return;
+        navMenu.classList.toggle('active', open);
+        if (navBackdrop) navBackdrop.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        if (navToggleIcon) {
+          navToggleIcon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+      }
+
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = !navMenu.classList.contains('active');
+          setDrawer(isOpen);
+        });
+      }
+
+      if (navBackdrop) {
+        navBackdrop.addEventListener('click', () => setDrawer(false));
+      }
+
+      if (navMenu) {
+        navMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) setDrawer(false);
+          });
         });
       }
 
       if (dropdown && dropdownToggle) {
         dropdownToggle.addEventListener('click', function(e) {
-          if (window.innerWidth <= 768) {
-            e.preventDefault();
-            dropdown.classList.toggle('open');
-          }
+          e.preventDefault();
+          const isOpen = dropdown.classList.toggle('open');
+          dropdownToggle.setAttribute('aria-expanded', String(isOpen));
         });
       }
 
-      // Slider principal
+      // Slider con efectos variados estilo WOWSlider
       const slides = document.querySelectorAll('.hero-slide');
       const prevBtn = document.getElementById('prevSlide');
       const nextBtn = document.getElementById('nextSlide');
+      const dotsContainer = document.getElementById('sliderDots');
+      const effects = ['kenburns', 'slide-left', 'zoom-in', 'flip-x', 'slide-right', 'zoom-out'];
       let currentIndex = 0;
       let autoplayId;
+      const dots = [];
+
+      if (dotsContainer && slides.length) {
+        slides.forEach((_, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+          btn.setAttribute('aria-label', 'Ir a imagen ' + (idx + 1));
+          btn.addEventListener('click', () => {
+            showSlide(idx);
+            startAutoplay();
+          });
+          dotsContainer.appendChild(btn);
+          dots.push(btn);
+        });
+      }
 
       function showSlide(index) {
         if (!slides.length) return;
         currentIndex = (index + slides.length) % slides.length;
+        const nextFx = effects[currentIndex % effects.length];
+
         slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === currentIndex);
+          if (i === currentIndex) {
+            slide.setAttribute('data-fx', nextFx);
+            // Reinicia animación suavemente
+            slide.classList.remove('active');
+            void slide.offsetWidth;
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
         });
       }
 
       function startAutoplay() {
         stopAutoplay();
-        autoplayId = setInterval(() => showSlide(currentIndex + 1), 3800);
+        autoplayId = setInterval(() => showSlide(currentIndex + 1), 4200);
       }
 
       function stopAutoplay() {
@@ -1208,6 +1535,7 @@
       }
 
       startAutoplay();
+    })();
 
       // Modal para galería
       const modal = document.getElementById('imgModal');
