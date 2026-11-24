@@ -1625,68 +1625,70 @@
         });
       }
 
-      // 2. Slider dinámico (Móvil vs PC) + Transición de cuadritos (mosaico)
+      // 2. Slider dinámico (Móvil vs PC desde acnespublicidad.com) + Transición de cuadritos
+      const BASE_URL = 'https://www.acnespublicidad.com';
+
       const mobileSlidesData = [
-        { alt: 'Neón 1', src: './imagesap/neon/neon1.avif' },
-        { alt: 'Caja de Luz 1', src: './imagesap/cajas/cajas1.avif' },
-        { alt: 'Letras 3D 1', src: './imagesap/letras/letras1.avif' },
-        { alt: 'Neón 2', src: './imagesap/neon/neon2.avif' },
-        { alt: 'Caja de Luz 2', src: './imagesap/cajas/cajas2.avif' },
-        { alt: 'Letras 3D 2', src: './imagesap/letras/letras2.avif' },
-        { alt: 'Neón 3', src: './imagesap/neon/neon3.avif' },
-        { alt: 'Caja de Luz 3', src: './imagesap/cajas/OFERTON3.avif' },
-        { alt: 'Letras 3D 3', src: './imagesap/letras/letras3.avif' },
-        { alt: 'Neón 4', src: './imagesap/neon/neon4.avif' },
-        { alt: 'Caja de Luz 4', src: './imagesap/cajas/cajas4.avif' },
-        { alt: 'Letras 3D 4', src: './imagesap/letras/letras4.avif' },
-        { alt: 'Neón 5', src: './imagesap/neon/TRI5.avif' },
-        { alt: 'Caja de Luz 5', src: './imagesap/cajas/ROBERTO5.avif' },
-        { alt: 'Letras 3D 5', src: './imagesap/letras/BOLILLO5.avif' },
-        { alt: 'Neón 6', src: './imagesap/neon/SOPA6.avif' },
-        { alt: 'Caja de Luz 6', src: './imagesap/cajas/ROSA6.avif' },
-        { alt: 'Letras 3D 6', src: './imagesap/letras/SAMSUNG6.avif' },
-        { alt: 'Neón 7', src: './imagesap/neon/GRACIAS7.avif' },
-        { alt: 'Caja de Luz 7', src: './imagesap/cajas/URGENCIAS7.avif' },
-        { alt: 'Letras 3D 7', src: './imagesap/letras/UDON7.avif' },
-        { alt: 'Neón 8', src: './imagesap/neon/DESA8.avif' },
-        { alt: 'Caja de Luz 8', src: './imagesap/cajas/CACHORR8.avif' },
-        { alt: 'Letras 3D 8', src: './imagesap/letras/GSQUARE8.avif' }
+        { alt: 'Neón 1', src: `${BASE_URL}/imagesap/neon/neon1.avif` },
+        { alt: 'Caja de Luz 1', src: `${BASE_URL}/imagesap/cajas/cajas1.avif` },
+        { alt: 'Letras 3D 1', src: `${BASE_URL}/imagesap/letras/letras1.avif` },
+        { alt: 'Neón 2', src: `${BASE_URL}/imagesap/neon/neon2.avif` },
+        { alt: 'Caja de Luz 2', src: `${BASE_URL}/imagesap/cajas/cajas2.avif` },
+        { alt: 'Letras 3D 2', src: `${BASE_URL}/imagesap/letras/letras2.avif` },
+        { alt: 'Neón 3', src: `${BASE_URL}/imagesap/neon/neon3.avif` },
+        { alt: 'Caja de Luz 3', src: `${BASE_URL}/imagesap/cajas/OFERTON3.avif` },
+        { alt: 'Letras 3D 3', src: `${BASE_URL}/imagesap/letras/letras3.avif` },
+        { alt: 'Neón 4', src: `${BASE_URL}/imagesap/neon/neon4.avif` },
+        { alt: 'Caja de Luz 4', src: `${BASE_URL}/imagesap/cajas/cajas4.avif` },
+        { alt: 'Letras 3D 4', src: `${BASE_URL}/imagesap/letras/letras4.avif` },
+        { alt: 'Neón 5', src: `${BASE_URL}/imagesap/neon/TRI5.avif` },
+        { alt: 'Caja de Luz 5', src: `${BASE_URL}/imagesap/cajas/ROBERTO5.avif` },
+        { alt: 'Letras 3D 5', src: `${BASE_URL}/imagesap/letras/BOLILLO5.avif` },
+        { alt: 'Neón 6', src: `${BASE_URL}/imagesap/neon/SOPA6.avif` },
+        { alt: 'Caja de Luz 6', src: `${BASE_URL}/imagesap/cajas/ROSA6.avif` },
+        { alt: 'Letras 3D 6', src: `${BASE_URL}/imagesap/letras/SAMSUNG6.avif` },
+        { alt: 'Neón 7', src: `${BASE_URL}/imagesap/neon/GRACIAS7.avif` },
+        { alt: 'Caja de Luz 7', src: `${BASE_URL}/imagesap/cajas/URGENCIAS7.avif` },
+        { alt: 'Letras 3D 7', src: `${BASE_URL}/imagesap/letras/UDON7.avif` },
+        { alt: 'Neón 8', src: `${BASE_URL}/imagesap/neon/DESA8.avif` },
+        { alt: 'Caja de Luz 8', src: `${BASE_URL}/imagesap/cajas/CACHORR8.avif` },
+        { alt: 'Letras 3D 8', src: `${BASE_URL}/imagesap/letras/GSQUARE8.avif` }
       ];
 
       const desktopSlidesData = [
-        { alt: 'Proyecto 1', src: './image%20acnes%20avif/proyectos/TERRA1%20(1).avif' },
-        { alt: 'Proyecto 2', src: './image%20acnes%20avif/proyectos/TERRA2%20(1).avif' },
-        { alt: 'Proyecto 3', src: './image%20acnes%20avif/proyectos/TERRA3%20(1).avif' },
-        { alt: 'Proyecto 4', src: './image%20acnes%20avif/proyectos/CARRRIER1%20(1).avif' },
-        { alt: 'Proyecto 5', src: './image%20acnes%20avif/proyectos/CARRIER4%20(2).avif' },
-        { alt: 'Proyecto 6', src: './image%20acnes%20avif/proyectos/CARRIER3%20(1).avif' },
-        { alt: 'Proyecto 7', src: './image%20acnes%20avif/proyectos/f1.avif' },
-        { alt: 'Proyecto 8', src: './image%20acnes%20avif/proyectos/f2.avif' },
-        { alt: 'Proyecto 9', src: './image%20acnes%20avif/proyectos/f3.avif' },
-        { alt: 'Proyecto 10', src: './image%20acnes%20avif/proyectos/h1.avif' },
-        { alt: 'Proyecto 11', src: './image%20acnes%20avif/proyectos/h2.avif' },
-        { alt: 'Proyecto 12', src: './image%20acnes%20avif/proyectos/h3.avif' },
-        { alt: 'Proyecto 13', src: './image%20acnes%20avif/proyectos/bm1.avif' },
-        { alt: 'Proyecto 14', src: './image%20acnes%20avif/proyectos/bm2.avif' },
-        { alt: 'Proyecto 15', src: './image%20acnes%20avif/proyectos/bm3.avif' },
-        { alt: 'Proyecto 16', src: './image%20acnes%20avif/proyectos/v1.avif' },
-        { alt: 'Proyecto 17', src: './image%20acnes%20avif/proyectos/v2.avif' },
-        { alt: 'Proyecto 18', src: './image%20acnes%20avif/proyectos/v3.avif' },
-        { alt: 'Proyecto 19', src: './image%20acnes%20avif/proyectos/ppm1.avif' },
-        { alt: 'Proyecto 20', src: './image%20acnes%20avif/proyectos/ppm2.avif' },
-        { alt: 'Proyecto 21', src: './image%20acnes%20avif/proyectos/ppm3.avif' },
-        { alt: 'Proyecto 22', src: './image%20acnes%20avif/proyectos/hm1.avif' },
-        { alt: 'Proyecto 23', src: './image%20acnes%20avif/proyectos/hm2.avif' },
-        { alt: 'Proyecto 24', src: './image%20acnes%20avif/proyectos/hm3.avif' },
-        { alt: 'Proyecto 25', src: './image%20acnes%20avif/proyectos/gs1.avif' },
-        { alt: 'Proyecto 26', src: './image%20acnes%20avif/proyectos/gs2.avif' },
-        { alt: 'Proyecto 27', src: './image%20acnes%20avif/proyectos/gs3.avif' },
-        { alt: 'Proyecto 28', src: './image%20acnes%20avif/proyectos/x1.avif' },
-        { alt: 'Proyecto 29', src: './image%20acnes%20avif/proyectos/x2.avif' },
-        { alt: 'Proyecto 30', src: './image%20acnes%20avif/proyectos/x3.avif' },
-        { alt: 'Proyecto 31', src: './image%20acnes%20avif/proyectos/mh1.avif' },
-        { alt: 'Proyecto 32', src: './image%20acnes%20avif/proyectos/mh2.avif' },
-        { alt: 'Proyecto 33', src: './image%20acnes%20avif/proyectos/mh3.avif' }
+        { alt: 'Proyecto 1', src: `${BASE_URL}/image%20acnes%20avif/proyectos/TERRA1%20(1).avif` },
+        { alt: 'Proyecto 2', src: `${BASE_URL}/image%20acnes%20avif/proyectos/TERRA2%20(1).avif` },
+        { alt: 'Proyecto 3', src: `${BASE_URL}/image%20acnes%20avif/proyectos/TERRA3%20(1).avif` },
+        { alt: 'Proyecto 4', src: `${BASE_URL}/image%20acnes%20avif/proyectos/CARRRIER1%20(1).avif` },
+        { alt: 'Proyecto 5', src: `${BASE_URL}/image%20acnes%20avif/proyectos/CARRIER4%20(2).avif` },
+        { alt: 'Proyecto 6', src: `${BASE_URL}/image%20acnes%20avif/proyectos/CARRIER3%20(1).avif` },
+        { alt: 'Proyecto 7', src: `${BASE_URL}/image%20acnes%20avif/proyectos/f1.avif` },
+        { alt: 'Proyecto 8', src: `${BASE_URL}/image%20acnes%20avif/proyectos/f2.avif` },
+        { alt: 'Proyecto 9', src: `${BASE_URL}/image%20acnes%20avif/proyectos/f3.avif` },
+        { alt: 'Proyecto 10', src: `${BASE_URL}/image%20acnes%20avif/proyectos/h1.avif` },
+        { alt: 'Proyecto 11', src: `${BASE_URL}/image%20acnes%20avif/proyectos/h2.avif` },
+        { alt: 'Proyecto 12', src: `${BASE_URL}/image%20acnes%20avif/proyectos/h3.avif` },
+        { alt: 'Proyecto 13', src: `${BASE_URL}/image%20acnes%20avif/proyectos/bm1.avif` },
+        { alt: 'Proyecto 14', src: `${BASE_URL}/image%20acnes%20avif/proyectos/bm2.avif` },
+        { alt: 'Proyecto 15', src: `${BASE_URL}/image%20acnes%20avif/proyectos/bm3.avif` },
+        { alt: 'Proyecto 16', src: `${BASE_URL}/image%20acnes%20avif/proyectos/v1.avif` },
+        { alt: 'Proyecto 17', src: `${BASE_URL}/image%20acnes%20avif/proyectos/v2.avif` },
+        { alt: 'Proyecto 18', src: `${BASE_URL}/image%20acnes%20avif/proyectos/v3.avif` },
+        { alt: 'Proyecto 19', src: `${BASE_URL}/image%20acnes%20avif/proyectos/ppm1.avif` },
+        { alt: 'Proyecto 20', src: `${BASE_URL}/image%20acnes%20avif/proyectos/ppm2.avif` },
+        { alt: 'Proyecto 21', src: `${BASE_URL}/image%20acnes%20avif/proyectos/ppm3.avif` },
+        { alt: 'Proyecto 22', src: `${BASE_URL}/image%20acnes%20avif/proyectos/hm1.avif` },
+        { alt: 'Proyecto 23', src: `${BASE_URL}/image%20acnes%20avif/proyectos/hm2.avif` },
+        { alt: 'Proyecto 24', src: `${BASE_URL}/image%20acnes%20avif/proyectos/hm3.avif` },
+        { alt: 'Proyecto 25', src: `${BASE_URL}/image%20acnes%20avif/proyectos/gs1.avif` },
+        { alt: 'Proyecto 26', src: `${BASE_URL}/image%20acnes%20avif/proyectos/gs2.avif` },
+        { alt: 'Proyecto 27', src: `${BASE_URL}/image%20acnes%20avif/proyectos/gs3.avif` },
+        { alt: 'Proyecto 28', src: `${BASE_URL}/image%20acnes%20avif/proyectos/x1.avif` },
+        { alt: 'Proyecto 29', src: `${BASE_URL}/image%20acnes%20avif/proyectos/x2.avif` },
+        { alt: 'Proyecto 30', src: `${BASE_URL}/image%20acnes%20avif/proyectos/x3.avif` },
+        { alt: 'Proyecto 31', src: `${BASE_URL}/image%20acnes%20avif/proyectos/mh1.avif` },
+        { alt: 'Proyecto 32', src: `${BASE_URL}/image%20acnes%20avif/proyectos/mh2.avif` },
+        { alt: 'Proyecto 33', src: `${BASE_URL}/image%20acnes%20avif/proyectos/mh3.avif` }
       ];
 
       const heroSlider = document.getElementById('heroSlider');
@@ -1799,7 +1801,6 @@
         nextSlide.classList.add('active');
         animateTilesIn(nextSlide);
 
-        // Precargar siguiente diapositiva
         const upcomingSlide = slideElements[(targetIdx + 1) % slideElements.length];
         if (upcomingSlide && !upcomingSlide.dataset.built) {
           buildTilesForSlide(upcomingSlide, upcomingSlide.dataset.src);
@@ -1816,7 +1817,6 @@
         const desiredData = useMobile ? mobileSlidesData : desktopSlidesData;
 
         if (!force && currentDataset === desiredData && slideElements.length > 0) {
-          // Reconstruir rejilla si cambia proporción al redimensionar
           slideElements.forEach((el) => {
             delete el.dataset.built;
             el.innerHTML = '';
