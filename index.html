@@ -124,8 +124,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      min-height: 44px;
-      padding: 6px 0;
+      min-height: 46px;
+      padding: 8px 0;
     }
 
     .top-bar__contact,
@@ -133,7 +133,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       list-style: none;
     }
 
@@ -142,16 +142,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 14px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(0, 255, 247, 0.12);
+      background: rgba(0, 255, 247, 0.14);
       color: #ffffff;
-      border: 1px solid rgba(0, 255, 247, 0.65);
+      border: 1px solid rgba(0, 255, 247, 0.7);
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.4px;
-      box-shadow: 0 0 12px rgba(0, 255, 247, 0.15);
+      box-shadow: 0 0 12px rgba(0, 255, 247, 0.16);
     }
 
     .top-bar__cta:hover {
@@ -177,7 +177,7 @@
     }
 
     .top-bar__contact a:not(.top-bar__cta) {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.92);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -188,15 +188,15 @@
     }
 
     .top-bar__social a {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: var(--white);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       font-size: 13px;
     }
 
@@ -210,7 +210,7 @@
     /* Cabecera / Logo */
     .site-header {
       background: radial-gradient(circle at top, #f4fafe 0%, #ffffff 72%);
-      padding: 16px 0;
+      padding: 18px 0 14px;
       border-bottom: 1px solid #e6eff6;
     }
 
@@ -221,7 +221,7 @@
     }
 
     .site-header__logo {
-      max-height: 110px;
+      max-height: 112px;
       width: auto;
       transition: transform 0.3s ease, filter 0.3s ease;
     }
@@ -243,7 +243,7 @@
     .nav-inner {
       pointer-events: auto;
       max-width: 1180px;
-      background: rgba(11, 27, 45, 0.9);
+      background: rgba(11, 27, 45, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(0, 255, 247, 0.25);
@@ -374,7 +374,7 @@
       padding-left: 17px;
     }
 
-    /* Slider Principal + Olas más bajas para ver bien la foto */
+    /* Slider Principal + Olas Visibles en la Base */
     .hero-stage {
       position: relative;
       margin-top: -28px;
@@ -462,7 +462,7 @@
 
     .slider-dots {
       position: absolute;
-      bottom: 44px;
+      bottom: 54px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 5;
@@ -470,7 +470,7 @@
       gap: 8px;
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(6, 15, 26, 0.45);
+      background: rgba(6, 15, 26, 0.5);
       backdrop-filter: blur(6px);
     }
 
@@ -489,15 +489,30 @@
       background: var(--cyan);
     }
 
-    /* Olas compactas en la base para mostrar más imagen */
+    /* Olas inferiores animadas y visibles */
     .slider-border {
       display: block;
       width: 100%;
-      height: 34px;
+      height: 48px;
       position: relative;
       z-index: 4;
-      margin-top: -34px;
+      margin-top: -48px;
       pointer-events: none;
+    }
+
+    .slider-border use {
+      animation: waveMove 12s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+
+    .slider-border .parallax1 use { animation-duration: 9s; }
+    .slider-border .parallax2 use { animation-duration: 12s; animation-direction: reverse; }
+    .slider-border .parallax3 use { animation-duration: 15s; }
+    .slider-border .parallax4 use { animation-duration: 18s; animation-direction: reverse; }
+
+    @keyframes waveMove {
+      0% { transform: translate3d(-90px, 0, 0); }
+      50% { transform: translate3d(85px, 0, 0); }
+      100% { transform: translate3d(-90px, 0, 0); }
     }
 
     /* Cajón lateral tech en móvil */
@@ -512,110 +527,6 @@
 
     .nav-backdrop.open {
       display: block;
-    }
-
-    @media (max-width: 900px) {
-      .hero-slider {
-        height: clamp(310px, 46vh, 420px);
-      }
-
-      .slider-border {
-        height: 26px;
-        margin-top: -26px;
-      }
-
-      .slider-dots {
-        bottom: 32px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-wrapper {
-        top: 0;
-        padding: 0;
-      }
-
-      .nav-inner {
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
-        justify-content: space-between;
-        padding: 10px 16px;
-      }
-
-      .nav-brand-mini {
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .nav-toggle {
-        display: inline-flex;
-      }
-
-      .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(320px, 86vw);
-        height: 100vh;
-        background: #091726;
-        border-left: 1px solid rgba(0, 255, 247, 0.3);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 6px;
-        padding: 22px 16px 32px;
-        overflow-y: auto;
-        z-index: 960;
-        transition: right 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-        box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
-      }
-
-      .nav-menu.active {
-        right: 0;
-      }
-
-      .nav-menu > li > a,
-      .dropdown-trigger {
-        width: 100%;
-        justify-content: space-between;
-        padding: 12px 14px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .nav-menu > li > a.nav-cta-pill {
-        justify-content: center;
-        margin-top: 8px;
-        border-radius: 12px;
-      }
-
-      .dropdown-panel {
-        position: static;
-        box-shadow: none;
-        background: rgba(0, 255, 247, 0.05);
-        border: 1px solid rgba(0, 255, 247, 0.14);
-        margin-top: 6px;
-        padding: 6px;
-      }
-
-      .has-dropdown.open .caret {
-        transform: rotate(180deg);
-      }
-
-      .caret {
-        transition: transform 0.25s ease;
-      }
-
-      .hero-slider {
-        height: 275px;
-      }
-
-      .slider-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 14px;
-      }
     }
 
     /* Badges de Sección */
@@ -1050,7 +961,7 @@
       font-weight: 500;
     }
 
-    /* Responsive */
+    /* Responsive Tablet y Móvil */
     @media (max-width: 900px) {
       .pillars-grid,
       .contact-social-grid {
@@ -1062,36 +973,140 @@
       }
 
       .hero-slider {
-        height: 320px;
+        height: 380px;
+      }
+
+      .slider-border {
+        height: 40px;
+        margin-top: -40px;
+      }
+
+      .slider-dots {
+        bottom: 46px;
       }
     }
 
     @media (max-width: 768px) {
-      .nav-toggle {
+      /* Acomoda barra de contacto arriba del logo en móvil */
+      .top-bar__inner {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 0;
+      }
+
+      .top-bar__contact {
+        justify-content: center;
+        gap: 8px 14px;
+        font-size: 12.5px;
+      }
+
+      .top-bar__contact li:first-child {
+        width: 100%;
         display: flex;
+        justify-content: center;
+      }
+
+      .top-bar__social {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .site-header {
+        padding: 14px 0 12px;
+      }
+
+      .site-header__logo {
+        max-height: 82px;
+      }
+
+      .nav-wrapper {
+        top: 0;
+        padding: 0;
+      }
+
+      .nav-inner {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        justify-content: space-between;
+        padding: 10px 16px;
+      }
+
+      .nav-brand-mini {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
       }
 
       .nav-menu {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 86vw);
+        height: 100vh;
+        background: #091726;
+        border-left: 1px solid rgba(0, 255, 247, 0.3);
         flex-direction: column;
+        justify-content: flex-start;
         align-items: stretch;
-        padding-bottom: 10px;
+        gap: 6px;
+        padding: 22px 16px 32px;
+        overflow-y: auto;
+        z-index: 960;
+        transition: right 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
       }
 
       .nav-menu.active {
-        display: flex;
+        right: 0;
       }
 
-      .nav-menu > li > a {
-        padding: 13px 16px;
+      .nav-menu > li > a,
+      .dropdown-trigger {
+        width: 100%;
         justify-content: space-between;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
       }
 
-      .has-dropdown > ul {
+      .nav-menu > li > a.nav-cta-pill {
+        justify-content: center;
+        margin-top: 8px;
+        border-radius: 12px;
+      }
+
+      .dropdown-panel {
         position: static;
         box-shadow: none;
-        background: rgba(0, 0, 0, 0.22);
-        border-radius: 0;
+        background: rgba(0, 255, 247, 0.05);
+        border: 1px solid rgba(0, 255, 247, 0.14);
+        margin-top: 6px;
+        padding: 6px;
+      }
+
+      .has-dropdown.open .caret {
+        transform: rotate(180deg);
+      }
+
+      .caret {
+        transition: transform 0.25s ease;
+      }
+
+      /* Slider más alto en móvil para evitar que las imágenes se vean delgadas */
+      .hero-slider {
+        height: 340px;
+      }
+
+      .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
       }
 
       #acnes-banners-container .acnes-inner {
@@ -1115,7 +1130,7 @@
       }
 
       .hero-slider {
-        height: 240px;
+        height: 300px;
       }
     }
   </style>
@@ -1205,7 +1220,7 @@
   </nav>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <!-- Slider Principal con Efectos Tipo WOWSlider + Olas Bajas -->
+  <!-- Slider Principal con Efectos Tipo WOWSlider + Olas Animadas -->
   <div class="hero-stage" id="top">
     <section class="hero-slider" aria-label="Galería destacada de anuncios luminosos">
       <div class="hero-slide active" data-fx="kenburns">
@@ -1241,14 +1256,14 @@
       <div class="slider-dots" id="sliderDots" aria-label="Seleccionar diapositiva"></div>
     </section>
 
-    <!-- Ondas Superpuestas Bajas (dejan ver mucho más la foto en PC y móvil) -->
+    <!-- Ondas Superpuestas Animadas -->
     <svg class="slider-border" preserveAspectRatio="none" viewBox="0 24 150 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
       </defs>
-      <g class="parallax1"><use fill="rgba(0, 255, 247, 0.45)" x="50" y="3" href="#gentle-wave" /></g>
-      <g class="parallax2"><use fill="rgba(69, 121, 226, 0.55)" x="50" y="0" href="#gentle-wave" /></g>
-      <g class="parallax3"><use fill="rgba(52, 97, 193, 0.72)" x="50" y="9" href="#gentle-wave" /></g>
+      <g class="parallax1"><use fill="rgba(0, 255, 247, 0.55)" x="50" y="3" href="#gentle-wave" /></g>
+      <g class="parallax2"><use fill="rgba(69, 121, 226, 0.65)" x="50" y="0" href="#gentle-wave" /></g>
+      <g class="parallax3"><use fill="rgba(23, 92, 131, 0.8)" x="50" y="9" href="#gentle-wave" /></g>
       <g class="parallax4"><use fill="#ffffff" x="50" y="6" href="#gentle-wave" /></g>
     </svg>
   </div>
